@@ -2,7 +2,20 @@ public class Tester {
   private String nombre;
   private int edad;
   private int experiencia;
+  
+  public Tester(String unNombre, int unaEdad, int unaExperiencia) {
+      this.setNombre(unNombre);
+      this.setEdad(unaEdad);
+      this.setExperiencia(unaExperiencia);
+  }
 
+  public Tester() {
+      this.setNombre("Sin nombre")
+      this.setEdad(18);
+      this.setExperiencia(0);
+  }
+
+  
   public String getNombre() {
       return nombre;
   }
@@ -22,18 +35,6 @@ public class Tester {
   }
   public void setExperiencia(int unaExperiencia){
       experiencia = unaExpriencia
-  }
-
-  public Tester(String unNombre, int unaEdad, int unaExperiencia) {
-      this.setNombre(unNombre);
-      this.setEdad(unaEdad);
-      this.setExperiencia(unaExperiencia);
-  }
-
-  public Tester() {
-      this.setNombre("Sin nombre")
-      this.setEdad(18);
-      this.setExperiencia(0);
   }
 
 
