@@ -207,7 +207,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                System.out.println("El valor buscado se encuentra en " + cantidad + " celdas");
                
                // Se crea el testeo y se guarda en el sistema
-               Testeo nuevoTesteo = new Testeo(0, testerElegido, "Contar fichas", "Resultado: " + cantidad);
+               Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "Resultado: " + cantidad);
                unSistema.agregarTesteo(nuevoTesteo);
                break;
                
