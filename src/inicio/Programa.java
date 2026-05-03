@@ -20,5 +20,6 @@ public class Programa {
         sistema.agregarTester(tester1);
 
         System.out.println(sistema);
+        s
     }
 }
