@@ -14,8 +14,6 @@ public class Tablero
     {'V','V','B','B','V','V','B','B','V','V'}
   };
   
-  // Este metodo lo vi con chatGpt. Me dijo que es lo que se acostumbra para la salida de la matriz
-  // hay que ver si lo mantenemos o encontramos uno mas a nivel de la clase.
   
   @Override
   public String toString () {
@@ -33,7 +31,11 @@ public class Tablero
   
   
   public void setTablero (String nuevaLinea, int numeroLinea) 
-  {
+  { 
+    /*El metodo aca quedo para que se solicite en Programa para cada linea, 
+     no se si es lo mejor o directamente poner como parametro una matriz nueva
+     y hacer todo el for completo en programa */
+      
     for (int i = 0 ; i < 10 ; i++)
       {
         tablero [numeroLinea][i] = nuevaLinea.charAt(i);
