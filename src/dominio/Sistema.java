@@ -21,7 +21,9 @@ public class Sistema {
        for (int i = 0 ; i < listaTesters.size() ; i++)
         {
           String nombre = listaTesters.get(i).getNombre();
-          if (nombre.equalsIgnoreCase(nuevoNombre)){repetido = true;}
+          if (nombre.equalsIgnoreCase(nuevoNombre)){
+               repetido = true;
+          }
               
         } 
        return repetido;
