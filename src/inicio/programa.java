@@ -1,15 +1,68 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package inicio;
 
-/**
- *
- * @author felir
- */
+package inicio;
+import java.util.Scanner;
+import dominio.*;
+
+
 public class programa {
-    public static void main(String[] args) {
-        System.out.println("Inicio del obligatorio");
+   
+    
+      public static void main(String[] args) {
+       
+      Sistema sistema = new Sistema();
+      
+      Scanner in = new Scanner (System.in);
+      System.out.println("Inicio del obligatorio");
+      System.out.println("");
+      String permanecer = "si";
+      
+      while (permanecer.equalsIgnoreCase("si")){
+      
+      
+      System.out.println("Ingrese el nombre del nuevo tester:");
+      String nombre = in.nextLine();
+      
+      while (sistema.nombreRepetido(nombre))
+      {
+          System.out.println("El nombre esta repetido, intente nuevamente:");
+          nombre = in.nextLine();
+      }
+      
+      System.out.println("Ingrese la edad del nuevo tester:");
+      int edad = in.nextInt();
+      
+      System.out.println("Ingrese la experiencia del nuevo tester:");
+      int experiencia = in.nextInt();
+      in.nextLine();
+      
+      Tester nuevo = new Tester(nombre, edad, experiencia);
+      
+      sistema.agregarTester(nuevo);
+          
+      System.out.println(sistema.getListaTester());
+    
+      System.out.println("Desea agregar un nuevo tester:");
+      permanecer = in.nextLine();
+      
+    
+    
+    
+      }
+    
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
