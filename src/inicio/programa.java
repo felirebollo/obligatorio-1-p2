@@ -201,8 +201,14 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                // Se solicita la letra
                System.out.println("Ingrese el valor a buscar (B, N o V):");
                char letra = Character.toUpperCase(in.nextLine().charAt(0));
-               // Se muestra el resultado del conteo
-               System.out.println("El valor buscado se encuentra en " + Testeo.contarFichas(unTablero, letra) + " celdas");
+               
+               // Se calcula el resultado y se muestra
+               int cantidad = Testeo.contarFichas(unTablero, letra);
+               System.out.println("El valor buscado se encuentra en " + cantidad + " celdas");
+               
+               // Se crea el testeo y se guarda en el sistema
+               Testeo nuevoTesteo = new Testeo(0, testerElegido, "Contar fichas", "Resultado: " + cantidad);
+               unSistema.agregarTesteo(nuevoTesteo);
                break;
                
             case 2:
