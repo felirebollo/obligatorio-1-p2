@@ -14,12 +14,14 @@ public class programa {
       Sistema sistema = new Sistema();
       Tablero unTablero = new Tablero();
       
+      
       System.out.println("Inicio del obligatorio");
       System.out.println("");
       char opcion ;
       
       do 
       {   
+          System.out.println("");
           System.out.println("Eliga una de las siguientes opciones:");
           System.out.println("");
           System.out.println("a) Registrar tester");
@@ -36,7 +38,7 @@ public class programa {
           {
              
               case 'a': registrarTester (sistema);break;
-              case 'b': registrarTablero();break;
+              case 'b': registrarTablero(unTablero);break;
               case 'c': registrarTesteo(unTablero);break;
               case 'd':
               case 'e':
@@ -85,9 +87,8 @@ public class programa {
 //-----------------------------------B) REGISTRAR MATRIZ---------------------------------------------------
     
       
-      public static void registrarTablero (){
+    public static void registrarTablero (Tablero nuevoTablero){
     Scanner in = new Scanner (System.in);
-    Tablero nuevoTablero = new Tablero (); // Se debe crear la instancia para acceder a ToString
     System.out.println("El tablero cargado por defecto es el siguiente:");
     System.out.println("");
     System.out.println(nuevoTablero.toString());
@@ -119,21 +120,25 @@ public class programa {
  
  public static void registrarTesteo (Tablero unTablero)
   {
+    Scanner in = new Scanner (System.in);
     int numero = 0;
     do 
      {
          System.out.println("");
          System.out.println("Ingrese el test a realizar:");
-         System.out.println("1");
-         System.out.println("2");
-         System.out.println("3");
-         System.out.println("4");
-         System.out.println("5");
+         System.out.println("1) Contar fichas");
+         System.out.println("2) Validar movimiento individual");
+         System.out.println("3) Validar movimiento en grupo");
+         System.out.println("4) Preparar tablero");
+         System.out.println("5) Verifiar conexion");
          System.out.println("6) Volver al menu anterior");
+         System.out.println("");
+         
+         numero = in.nextInt();
      
      switch (numero)
        {
-         case 1: Testeo.contarFichas(unTablero);break;
+         case 1: System.out.println("El valor buscado se encuentra en " + Testeo.contarFichas(unTablero) + " celdas");break;
          case 2:
          case 3:
          case 4:

@@ -38,7 +38,7 @@ public class Tablero
       
     for (int i = 0 ; i < 10 ; i++)
       {
-        tablero [numeroLinea][i] = nuevaLinea.charAt(i);
+        tablero [numeroLinea][i] = Character.toUpperCase(nuevaLinea.charAt(i));
       }
   
   }

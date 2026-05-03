@@ -12,7 +12,7 @@ public class Testeo {
         char letra;
         
         System.out.println("Ingrese el valor a buscar:");
-        letra = in.nextLine().charAt(0);
+        letra = Character.toUpperCase(in.nextLine().charAt(0));
         
         for (int i = 0 ; i < 8 ; i++) 
           {
