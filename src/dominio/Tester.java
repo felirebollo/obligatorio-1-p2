@@ -1,3 +1,5 @@
+package dominio;
+
 public class Tester {
   private String nombre;
   private int edad;
@@ -10,7 +12,7 @@ public class Tester {
   }
 
   public Tester() {
-      this.setNombre("Sin nombre")
+      this.setNombre("Sin nombre");
       this.setEdad(18);
       this.setExperiencia(0);
   }
@@ -27,20 +29,20 @@ public class Tester {
       return edad;
   }
   public void setEdad(int unaEdad){
-      edad = unaEdad
+      edad = unaEdad;
   }
 
-  public int Experiencia(){
-      return edad;
+  public int getExperiencia(){
+      return experiencia;
   }
   public void setExperiencia(int unaExperiencia){
-      experiencia = unaExpriencia
+      experiencia = unaExperiencia;
   }
 
 
   @Override
   public String toString() {
-      return this.getNombre() + " - Edad: " + this.getEdad() + " - Experiencia:"
+      return this.getNombre() + " - Edad: " + this.getEdad() + " - Experiencia: " + this.getExperiencia();
   }
   
 
