@@ -57,32 +57,47 @@ public class programa {
       String permanecer = "si";
       
       while (permanecer.equalsIgnoreCase("si")){
-      
-      
-      System.out.println("Ingrese el nombre del nuevo tester:");
-      String nombre = in.nextLine();
-      
-      while (unSistema.nombreRepetido(nombre))
-      {
-          System.out.println("El nombre esta repetido, intente nuevamente:");
-          nombre = in.nextLine();
-      }
-      
-      System.out.println("Ingrese la edad del nuevo tester:");
-      int edad = in.nextInt();
-      
-      System.out.println("Ingrese la experiencia del nuevo tester:");
-      int experiencia = in.nextInt();
-      in.nextLine();
-      
-      Tester nuevo = new Tester(nombre, edad, experiencia);
-      
-      unSistema.agregarTester(nuevo);
-          
-      System.out.println("Desea agregar un nuevo tester:");
-      permanecer = in.nextLine();
-      
-      }}
+
+         //Se solicita el nombree
+         System.out.println("Ingrese el nombre del nuevo tester:");
+         String nombre = in.nextLine();
+         
+         //valido el nombre si no esta vaio y no esta respetido
+         while(nombre.length() == 0|| unSistema.nombreRepetido(nombre){
+            System.out.println("El nombre esta vacio o repetido, intente nuevamente:")
+            nombre = in.nextLine();
+         }
+
+         //Se eolicita la edada
+         System.out.println("Ingrese la edad del nuevo tester:")
+         int edad = in.nextInt();
+
+         //Se valida la edad
+        while (edad <= 0) {
+            System.out.println("La edad debe ser positiva. Reingrese:");
+            edad = in.nextInt();
+        }
+
+         //Se solicita la experiencia
+         System.out.println("Ingrese la experiencia del nuevo tester:");
+         int experiencia = in.nextInt();
+         
+         //Se valida que sea positica y que sea mayor o igual a la edad(lo aclara en la rubrica )
+         while(experiencoa < 0 || experiencia >= edad){
+            System.out.println("Edad invalida, ingrese nuevamente:");
+            experiencia = in.nextInt();
+         }
+
+         in.nextLine()
+
+         Tester nuevo = new Tester(nombre, edad, experiencia);
+         unSistema.agregarTester(nuevo);
+             
+         System.out.println("Desea agregar un nuevo tester:");
+         permanecer = in.nextLine();
+         
+         }}
+   
       
 //-----------------------------------B) REGISTRAR MATRIZ---------------------------------------------------
     
