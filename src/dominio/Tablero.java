@@ -43,6 +43,9 @@ public class Tablero
   
   }
 
-
-
+ public char getValorCelda (int fila, int columna)
+ {
+   return tablero [fila][columna]; 
+ }
+ 
 }
