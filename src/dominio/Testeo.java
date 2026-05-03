@@ -3,6 +3,51 @@ package dominio;
 import java.util.Scanner;
 
 public class Testeo {
+    private int numero;
+    private Tester tester;
+    private String tipo;
+    private String resultado;
+
+    public Testeo(int unNumero, Tester unTester, String unTipo, String unResultado) {
+        this.setNumero(unNumero);
+        this.setTester(unTester);
+        this.setTipo(unTipo);
+        this.setResultado(unResultado);
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+    public void setNumero(int unNumero) {
+        numero = unNumero;
+    }
+
+    public Tester getTester() {
+        return tester;
+    }
+    public void setTester(Tester unTester) {
+        tester = unTester;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String unTipo) {
+        tipo = unTipo;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+    public void setResultado(String unResultado) {
+        resultado = unResultado;
+    }
+
+    @Override
+    public String toString() {
+        return "Testeo " + this.getNumero() + " - " + this.getTipo() + " - " + this.getTester() + " - " + this.getResultado();
+    }
+
     
     //Cuenta cuantas fichas hay de un tipo en el tablero
     public static int contarFichas (Tablero unTablero, char letra){  
