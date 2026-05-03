@@ -164,6 +164,24 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
    if (unSistema.getListaTester().size() == 0) {
       System.out.println("No hay testers registrados. Debe registrar un tester primero.");
    } else {
+
+      //Se muestarn los testers registrados para elgir quien realiza el testeo
+      for(int i = 0; i < unSistema.getListaTester().size(); i++) {
+         System.out.println(i + " - " + unSistema.getListaTester().get(i));
+      }
+
+      //Se pide el numero del tester
+      System.out.println("Ingrese el numero del tester:");
+      int numeroTester = in.nextInt();
+
+      //Se valida el numero
+      while(numeroTester < 0 || numeroTester >= unSistema.getListaTester().size()) {
+         System.out.println("Numero invalido. Reingrese:");
+         numeroTester = in.nextInt();  
+      }
+
+      Tester testerElegido = unSistema.getListaTester().get(numeroTester);
+
       do {
          System.out.println("");
          System.out.println("Ingrese el test a realizar:");
@@ -180,7 +198,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
      
          switch (numero){
             case 1: 
-               // Se solicita la letra a buscar
+               // Se solicita la letra
                System.out.println("Ingrese el valor a buscar (B, N o V):");
                char letra = Character.toUpperCase(in.nextLine().charAt(0));
                // Se muestra el resultado del conteo
