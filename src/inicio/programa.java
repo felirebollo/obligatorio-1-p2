@@ -2,10 +2,12 @@
 package inicio;
 import java.util.Scanner;
 import dominio.*;
+import java.awt.BorderLayout;
 
 
 public class programa {
    
+//-----------------------------------TESTER--------------------------------------------------------
     
       public static void main(String[] args) {
        
@@ -39,16 +41,52 @@ public class programa {
       
       sistema.agregarTester(nuevo);
           
-      System.out.println(sistema.getListaTester());
-    
       System.out.println("Desea agregar un nuevo tester:");
       permanecer = in.nextLine();
       
-    
-    
-    
       }
+      
+//------------------------------------MATRIZ---------------------------------------------------
     
+    Tablero nuevoTablero = new Tablero (); // Se debe crear la instancia para acceder a ToString
+    System.out.println("El tablero cargado por defecto es el siguiente:");
+    System.out.println("");
+    System.out.println(nuevoTablero.toString());
+    System.out.println("");
+    
+    String ingresaNuevo = "";
+    System.out.println("Desea ingresar un tablero diferente?");
+    ingresaNuevo = in.nextLine();
+    
+    if(ingresaNuevo.equalsIgnoreCase("si"))
+      {
+       String linea = "";
+       for (int i = 1 ; i <= 8 ; i++)
+         {
+           System.out.println("Ingrese la linea " + i + ":");
+           linea = in.nextLine();
+           
+           nuevoTablero.setTablero(linea, i-1);
+           
+         } 
+          System.out.println("");
+          System.out.println(nuevoTablero.toString());
+       }
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
     }
 
 

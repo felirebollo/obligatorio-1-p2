@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 public class Sistema {
-     private ArrayList <Tester> listaTesters = new ArrayList <>();    
-    
+     private ArrayList <Tester> listaTesters = new ArrayList <>();  
+       
     
     
     public void agregarTester (Tester nuevoTester)
