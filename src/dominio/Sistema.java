@@ -7,13 +7,16 @@ import java.util.ArrayList;
 public class Sistema {
      private ArrayList<Tester> listaTesters = new ArrayList<>();  
      private ArrayList<Testeo> listaTesteos = new ArrayList<>();
-    
-    public void agregarTester (Tester nuevoTester){
-       listaTesters.add(nuevoTester);
+
+     // Guarda el proximo numero de testeo
+     private int proximoNumeroTesteo = 1;
+     
+     public void agregarTester (Tester nuevoTester){
+          listaTesters.add(nuevoTester);
      }
     
-    public boolean nombreRepetido (String nuevoNombre){
-       boolean repetido = false;
+     public boolean nombreRepetido (String nuevoNombre){
+     boolean repetido = false;
        
        for (int i = 0 ; i < listaTesters.size() ; i++){
           String nombre = listaTesters.get(i).getNombre();
@@ -23,7 +26,7 @@ public class Sistema {
               
         } 
        return repetido;
-      }
+     }
     
     public ArrayList<Tester> getListaTester(){ 
          return listaTesters;
@@ -39,7 +42,13 @@ public class Sistema {
      public ArrayList<Testeo> getListaTesteos() {
           return listaTesteos;
      }
-    
+
+     // Devuelve el proximo numero de testeo y lo incrementa
+     public int obtenerProximoNumeroTesteo() {
+     int numero = proximoNumeroTesteo;
+     proximoNumeroTesteo = proximoNumeroTesteo + 1;
+     return numero;
+}
     
     
     
