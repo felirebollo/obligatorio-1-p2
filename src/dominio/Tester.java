@@ -45,6 +45,6 @@ public class Tester {
       return this.getNombre() + " - Edad: " + this.getEdad() + " - Experiencia: " + this.getExperiencia();
   }
   
-
+ 
   
 }

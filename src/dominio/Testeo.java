@@ -7,8 +7,11 @@ public class Testeo {
     private Tester tester;
     private String tipo;
     private String resultado;
+    private String comentario;
+    private Tablero tableroInicial;
+    private Tablero tableroFinal;
 
-    public Testeo(int unNumero, Tester unTester, String unTipo, String unResultado) {
+    public Testeo(int unNumero, Tester unTester, String unTipo, String unResultado, Tablero tableroInicial, Tablero tableroFinal) {
         this.setNumero(unNumero);
         this.setTester(unTester);
         this.setTipo(unTipo);
@@ -42,10 +45,26 @@ public class Testeo {
     public void setResultado(String unResultado) {
         resultado = unResultado;
     }
-
+    
+    public Tablero getTableroInicial () {
+      return tableroInicial;
+    }
+    
+    public Tablero getTableroFinal() {
+     return tableroFinal;
+    }
+    
+    public String getComentario () {
+     return comentario;
+    }
+    
+    public void setCometario (String unComentario){
+      comentario = unComentario;
+    }
+ 
     @Override
     public String toString() {
-        return "Testeo " + this.getNumero() + " - " + this.getTipo() + " - " + this.getTester() + " - " + this.getResultado();
+        return "Testeo Nro: " + this.getNumero() + " -  Tipo de testeo: " + this.getTipo() + " - Tester: " + this.getTester().getNombre() + " - Resultado: " + this.getResultado() + " - Comentario: " + this.getComentario() ;
     }
 
     
@@ -61,7 +80,30 @@ public class Testeo {
              }
           }
         
+        
         return contador;
      }
+    
+    
+    
+    // Agregar comentario
+    
+    public static String agregaComentario ()
+    {   
+        String comentario = "";
+        Scanner in = new Scanner(System.in);
+       
+        System.out.println("Desde agregar un comentario? (Si / No)" );
+        String respuesta = in.nextLine();
+        if (respuesta.equalsIgnoreCase("si"))
+         {
+             System.out.println("Ingrese su comentario:");
+             comentario = in.nextLine();
+         } 
+         else {comentario = "Sin comentarios";}
+        
+         return comentario;
+    
+    }
     
 }

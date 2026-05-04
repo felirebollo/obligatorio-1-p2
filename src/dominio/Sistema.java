@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 // ULTIMO PUSH 03/05 A LAS 15:13
 // ULTIMO PUSH 3/05 A LAS 17:52
+// ULTIMO Push 04/05 A LAS 20:27
 
 public class Sistema {
      private ArrayList<Tester> listaTesters = new ArrayList<>();  
@@ -16,7 +17,8 @@ public class Sistema {
           listaTesters.add(nuevoTester);
      }
     
-     public boolean nombreRepetido (String nuevoNombre){
+    // Detecta si el nombre ingresado para el tester ya existe 
+    public boolean nombreRepetido (String nuevoNombre){
      boolean repetido = false;
        
        for (int i = 0 ; i < listaTesters.size() ; i++){

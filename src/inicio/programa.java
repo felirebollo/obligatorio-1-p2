@@ -1,12 +1,12 @@
 
 package inicio;
-import java.util.Scanner;
+import java.util.*;
 import dominio.*;
 
 
 public class programa {
-   
-   public static void main(String[] args) {
+
+public static void main(String[] args) {
        
    Scanner in = new Scanner (System.in);
 
@@ -36,8 +36,8 @@ public class programa {
              
          case 'a': registrarTester (sistema);break;
          case 'b': registrarTablero(unTablero);break;
-         case 'c': registrarTesteo(unTablero, sistema);break;
-         case 'd':
+         case 'c': registrarTesteo(sistema, unTablero);break;
+         case 'd': consultaDeTesters (sistema);break;
          case 'e':
       } 
       
@@ -59,14 +59,14 @@ public static void registrarTester (Sistema unSistema){
       System.out.println("Ingrese el nombre del nuevo tester:");
       String nombre = in.nextLine();
          
-      //valido el nombre si no esta vaio y no esta respetido
-      while(nombre.length() == 0|| unSistema.nombreRepetido(nombre){
-         System.out.println("El nombre esta vacio o repetido, intente nuevamente:")
+      //valido el nombre si no esta vacio y no esta respetido
+      while(nombre.length() == 0|| unSistema.nombreRepetido(nombre)){
+         System.out.println("El nombre esta vacio o repetido, intente nuevamente:");
          nombre = in.nextLine();
       }
 
       //Se eolicita la edada
-      System.out.println("Ingrese la edad del nuevo tester:")
+      System.out.println("Ingrese la edad del nuevo tester:");
       int edad = in.nextInt();
 
       //Se valida la edad
@@ -80,7 +80,7 @@ public static void registrarTester (Sistema unSistema){
       int experiencia = in.nextInt();
          
       //Se valida que sea positica y que sea mayor o igual a la edad(lo aclara en la rubrica )
-      while(experiencoa < 0 || experiencia >= edad){
+      while(experiencia < 0 || experiencia >= edad){
          System.out.println("Edad invalida, ingrese nuevamente:");
          experiencia = in.nextInt();
       }
@@ -151,7 +151,7 @@ public static boolean lineaValida(String linea) {
          } 
       }
    }
-   return esValida;lis
+   return esValida;
 }
     
  //---------------------------------C) REGISTRAR TESTEO--------------------------------------
@@ -165,7 +165,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
       System.out.println("No hay testers registrados. Debe registrar un tester primero.");
    } else {
 
-      //Se muestarn los testers registrados para elgir quien realiza el testeo
+      //Se muestran los testers registrados para elgir quien realiza el testeo
       for(int i = 0; i < unSistema.getListaTester().size(); i++) {
          System.out.println(i + " - " + unSistema.getListaTester().get(i));
       }
@@ -207,9 +207,11 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                System.out.println("El valor buscado se encuentra en " + cantidad + " celdas");
                
                // Se crea el testeo y se guarda en el sistema
-               Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "Resultado: " + cantidad);
+               Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero);
+               nuevoTesteo.setCometario(Testeo.agregaComentario());
                unSistema.agregarTesteo(nuevoTesteo);
-               break;
+              
+               break;   
                
             case 2:
             case 3:
@@ -221,6 +223,81 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
 }
 
 
+//------------------------------D) CONSULTA DE TESTERS------------------------------------
+
+public static void consultaDeTesters (Sistema unSistema)
+ {  
+     Scanner in = new Scanner (System.in);
+     Collections.sort
+        (unSistema.getListaTester(), new Comparator<Tester>() 
+          {
+            public int compare(Tester a, Tester b) 
+            {
+             return a.getNombre().compareToIgnoreCase(b.getNombre());
+            }
+         }
+        );
+     
+     System.out.println("Testers registrados: ");
+     System.out.println("");
+   
+     for (int i = 0 ; i < unSistema.getListaTester().size(); i++)
+    {
+       System.out.println(i + ") " + unSistema.getListaTester().get(i).getNombre());
+    }
+     
+     
+     System.out.println("Ingrese el numero del tester a consultar: ");
+     
+     int indice  = in.nextInt();
+     String nombre = unSistema.getListaTester().get(indice).getNombre();
+      
+     ArrayList <Testeo>  auxListaTesteos = new ArrayList<>();
+     
+     for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
+       {
+         if (nombre.equals(unSistema.getListaTesteos().get(i).getTester().getNombre()))
+           {
+             auxListaTesteos.add(unSistema.getListaTesteos().get(i));
+           
+           }
+       }
+     
+     Collections.sort
+        (auxListaTesteos, new Comparator<Testeo>() 
+          {
+            public int compare(Testeo a, Testeo b) 
+            {
+             return a.getNumero() - b.getNumero();
+            }
+         }
+        );
+     System.out.println("Los testeos realizdos por el tester elegido son:");
+     System.out.println("");
+     
+     for (int i = 0 ; i < auxListaTesteos.size(); i++)
+    {
+       System.out.println("Testeo Nro " + auxListaTesteos.get(i).getNumero() + " - " + auxListaTesteos.get(i).getTipo());
+    }           
+      
+     System.out.println("Ingrese el numero de teste a consultar (Numero entero):");
+     int consulta = in.nextInt();
+     int indice2 = 0;
+     
+     for (int i = 0 ; i < auxListaTesteos.size() ; i++)
+       {
+         if (auxListaTesteos.get(i).getNumero() == consulta){indice2 = i;}
+       
+       } 
+     
+     System.out.println(auxListaTesteos.get(indice2).toString());
+     
+    
+ 
+ 
+ }
+
+
 
 
 
@@ -230,10 +307,6 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
 
 
     
-
-
-
-
 
 
 
