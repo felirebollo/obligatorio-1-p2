@@ -16,6 +16,8 @@ public class Testeo {
         this.setTester(unTester);
         this.setTipo(unTipo);
         this.setResultado(unResultado);
+        this.setTableroInicial(tableroInicial);
+        this.setTableroFinal(tableroFinal);
     }
 
     public int getNumero() {
@@ -61,6 +63,14 @@ public class Testeo {
     public void setCometario (String unComentario){
       comentario = unComentario;
     }
+    public void setTableroInicial (Tablero unTablero){
+      tableroInicial = unTablero;
+    }
+    
+    public void setTableroFinal (Tablero unTablero){
+      tableroFinal = unTablero;
+    }
+   
  
     @Override
     public String toString() {
@@ -80,7 +90,7 @@ public class Testeo {
              }
           }
         
-        
+             
         return contador;
      }
     

@@ -210,6 +210,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero);
                nuevoTesteo.setCometario(Testeo.agregaComentario());
                unSistema.agregarTesteo(nuevoTesteo);
+               
               
                break;   
                
@@ -228,6 +229,8 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
 public static void consultaDeTesters (Sistema unSistema)
  {  
      Scanner in = new Scanner (System.in);
+     
+     // Ordena alfabeticamente el arrayLista
      Collections.sort
         (unSistema.getListaTester(), new Comparator<Tester>() 
           {
@@ -241,6 +244,7 @@ public static void consultaDeTesters (Sistema unSistema)
      System.out.println("Testers registrados: ");
      System.out.println("");
    
+    // Imprime la lista ordenada 
      for (int i = 0 ; i < unSistema.getListaTester().size(); i++)
     {
        System.out.println(i + ") " + unSistema.getListaTester().get(i).getNombre());
@@ -248,12 +252,14 @@ public static void consultaDeTesters (Sistema unSistema)
      
      
      System.out.println("Ingrese el numero del tester a consultar: ");
-     
      int indice  = in.nextInt();
+     
+     // Del indice ingresado obtenemos el nombre del tester
      String nombre = unSistema.getListaTester().get(indice).getNombre();
       
      ArrayList <Testeo>  auxListaTesteos = new ArrayList<>();
      
+     // Confeccionamos el arrayList auxiliar con los testeos del tester especificado
      for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
        {
          if (nombre.equals(unSistema.getListaTesteos().get(i).getTester().getNombre()))
@@ -263,6 +269,7 @@ public static void consultaDeTesters (Sistema unSistema)
            }
        }
      
+     /* ESTO LOS COMENTE PORQUE ME PARECE QUE NO ES NECESARIO. DESPUES LO VEO
      Collections.sort
         (auxListaTesteos, new Comparator<Testeo>() 
           {
@@ -271,8 +278,9 @@ public static void consultaDeTesters (Sistema unSistema)
              return a.getNumero() - b.getNumero();
             }
          }
-        );
-     System.out.println("Los testeos realizdos por el tester elegido son:");
+        );*/
+     
+     System.out.println("Los testeos realizados por el tester elegido son:");
      System.out.println("");
      
      for (int i = 0 ; i < auxListaTesteos.size(); i++)
@@ -280,17 +288,25 @@ public static void consultaDeTesters (Sistema unSistema)
        System.out.println("Testeo Nro " + auxListaTesteos.get(i).getNumero() + " - " + auxListaTesteos.get(i).getTipo());
     }           
       
-     System.out.println("Ingrese el numero de teste a consultar (Numero entero):");
+     System.out.println("Ingrese el numero de test a consultar (Numero entero):");
      int consulta = in.nextInt();
      int indice2 = 0;
      
-     for (int i = 0 ; i < auxListaTesteos.size() ; i++)
+     for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
        {
-         if (auxListaTesteos.get(i).getNumero() == consulta){indice2 = i;}
-       
+        if (unSistema.getListaTesteos().get(i).getNumero() == consulta){indice2 = i;}
        } 
      
-     System.out.println(auxListaTesteos.get(indice2).toString());
+     
+     System.out.println("Los datos del testeo son los siguiente:");
+     System.out.println("");
+     System.out.println(unSistema.getListaTesteos().get(indice2).toString());
+     System.out.println("");
+     System.out.println("La matriz utilizada no tuvo modificaciones y es la siguiente:");
+     System.out.println("");
+     System.out.println(unSistema.getListaTesteos().get(indice2).getTableroInicial().toString());
+
+     
      
     
  

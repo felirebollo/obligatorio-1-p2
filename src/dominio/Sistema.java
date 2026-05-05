@@ -5,6 +5,8 @@ import java.util.ArrayList;
 // ULTIMO PUSH 03/05 A LAS 15:13
 // ULTIMO PUSH 3/05 A LAS 17:52
 // ULTIMO Push 04/05 A LAS 20:27
+// ULTIMO Push 05/05 A LAS 09:25
+
 
 public class Sistema {
      private ArrayList<Tester> listaTesters = new ArrayList<>();  
