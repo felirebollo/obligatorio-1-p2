@@ -53,35 +53,42 @@ public static void registrarTester (Sistema unSistema){
    Scanner in = new Scanner (System.in);
    String permanecer = "si";
       
-   while (permanecer.equalsIgnoreCase("si")){
+   while (permanecer.equalsIgnoreCase("si"))
+   {
 
       //Se solicita el nombree
+       System.out.println("");
       System.out.println("Ingrese el nombre del nuevo tester:");
       String nombre = in.nextLine();
          
       //valido el nombre si no esta vacio y no esta respetido
       while(nombre.length() == 0|| unSistema.nombreRepetido(nombre)){
+         System.out.println("");
          System.out.println("El nombre esta vacio o repetido, intente nuevamente:");
          nombre = in.nextLine();
       }
 
       //Se eolicita la edada
+       System.out.println("");
       System.out.println("Ingrese la edad del nuevo tester:");
       int edad = in.nextInt();
 
       //Se valida la edad
       while (edad <= 0) {
+         System.out.println("");
          System.out.println("La edad debe ser positiva. Reingrese:");
          edad = in.nextInt();
       }
 
       //Se solicita la experiencia
+      System.out.println("");
       System.out.println("Ingrese la experiencia del nuevo tester:");
       int experiencia = in.nextInt();
          
-      //Se valida que sea positica y que sea mayor o igual a la edad(lo aclara en la rubrica )
-      while(experiencia < 0 || experiencia >= edad){
-         System.out.println("Edad invalida, ingrese nuevamente:");
+      //Se valida que la experiencia sea positiva y que sea menor o igual a la edad(lo aclara en la rubrica )
+      while(experiencia < 0 || experiencia > edad){
+          System.out.println("");
+         System.out.println("Experiencia invalida, ingrese nuevamente:");
          experiencia = in.nextInt();
       }
 
@@ -89,10 +96,17 @@ public static void registrarTester (Sistema unSistema){
 
       Tester nuevo = new Tester(nombre, edad, experiencia);
       unSistema.agregarTester(nuevo);
-             
-      System.out.println("Desea agregar un nuevo tester:");
+      
+       System.out.println("");
+      System.out.println("Desea agregar un nuevo tester: (SI/NO)");
       permanecer = in.nextLine();
-         
+      
+      while (!permanecer.equalsIgnoreCase("SI") && !permanecer.equalsIgnoreCase("NO"))
+      {
+        System.out.println("");
+        System.out.println("Debe ingresar SI o NO.");
+        permanecer = in.nextLine();
+      }
       }
 }
    
@@ -164,15 +178,18 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
    if (unSistema.getListaTester().size() == 0) {
       System.out.println("No hay testers registrados. Debe registrar un tester primero.");
    } else {
-
-      //Se muestran los testers registrados para elgir quien realiza el testeo
+       System.out.println("");
+       System.out.println("Testers disponibles:");
+       System.out.println("");
+      //Se muestran los testers registrados para elegir quien realiza el testeo
       for(int i = 0; i < unSistema.getListaTester().size(); i++) {
-         System.out.println(i + " - " + unSistema.getListaTester().get(i));
+         System.out.println( (i + 1) + " - " + unSistema.getListaTester().get(i));
       }
 
       //Se pide el numero del tester
+       System.out.println("");
       System.out.println("Ingrese el numero del tester:");
-      int numeroTester = in.nextInt();
+      int numeroTester = in.nextInt() - 1 ;
 
       //Se valida el numero
       while(numeroTester < 0 || numeroTester >= unSistema.getListaTester().size()) {
@@ -184,7 +201,8 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
 
       do {
          System.out.println("");
-         System.out.println("Ingrese el test a realizar:");
+         System.out.println("Testeos disponibles:");
+         System.out.println("");
          System.out.println("1) Contar fichas");
          System.out.println("2) Validar movimiento individual");
          System.out.println("3) Validar movimiento en grupo");
@@ -192,6 +210,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
          System.out.println("5) Verifiar conexion");
          System.out.println("6) Volver al menu anterior");
          System.out.println("");
+         System.out.println("Ingrese el numero de testeo a realizar:");
          
          numero = in.nextInt();
          in.nextLine();
@@ -199,19 +218,33 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
          switch (numero){
             case 1: 
                // Se solicita la letra
+               System.out.println("");
                System.out.println("Ingrese el valor a buscar (B, N o V):");
-               char letra = Character.toUpperCase(in.nextLine().charAt(0));
+               String aux = in.nextLine().toUpperCase();
+               
+               while ((aux.equals("B") && aux.equals("N") && aux.equals("V")) || (aux.length() != 1))
+               {
+               System.out.println("");
+               System.out.println("Debe ingresar los valores B, N o V:");
+               aux = in.nextLine().toUpperCase();
+               }
+               
+               char letra = aux.charAt(0);
                
                // Se calcula el resultado y se muestra
                int cantidad = Testeo.contarFichas(unTablero, letra);
+               System.out.println("");
                System.out.println("El valor buscado se encuentra en " + cantidad + " celdas");
+               System.out.println("");
                
                // Se crea el testeo y se guarda en el sistema
-               Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero);
+               Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero, "Parametro: " + letra );
                nuevoTesteo.setCometario(Testeo.agregaComentario());
                unSistema.agregarTesteo(nuevoTesteo);
                
-              
+               System.out.println("");
+               System.out.println("Testeo agregado exitosamente.");
+               System.out.println("");
                break;   
                
             case 2:
@@ -241,18 +274,20 @@ public static void consultaDeTesters (Sistema unSistema)
          }
         );
      
+     System.out.println("");
      System.out.println("Testers registrados: ");
      System.out.println("");
-   
+    
     // Imprime la lista ordenada 
      for (int i = 0 ; i < unSistema.getListaTester().size(); i++)
     {
-       System.out.println(i + ") " + unSistema.getListaTester().get(i).getNombre());
+       System.out.println(i + 1 + ") " + unSistema.getListaTester().get(i).getNombre());
     }
      
      
+     System.out.println("");
      System.out.println("Ingrese el numero del tester a consultar: ");
-     int indice  = in.nextInt();
+     int indice  = in.nextInt() -1;
      
      // Del indice ingresado obtenemos el nombre del tester
      String nombre = unSistema.getListaTester().get(indice).getNombre();
@@ -269,17 +304,7 @@ public static void consultaDeTesters (Sistema unSistema)
            }
        }
      
-     /* ESTO LOS COMENTE PORQUE ME PARECE QUE NO ES NECESARIO. DESPUES LO VEO
-     Collections.sort
-        (auxListaTesteos, new Comparator<Testeo>() 
-          {
-            public int compare(Testeo a, Testeo b) 
-            {
-             return a.getNumero() - b.getNumero();
-            }
-         }
-        );*/
-     
+     System.out.println("");
      System.out.println("Los testeos realizados por el tester elegido son:");
      System.out.println("");
      
@@ -287,7 +312,8 @@ public static void consultaDeTesters (Sistema unSistema)
     {
        System.out.println("Testeo Nro " + auxListaTesteos.get(i).getNumero() + " - " + auxListaTesteos.get(i).getTipo());
     }           
-      
+     
+     System.out.println("");
      System.out.println("Ingrese el numero de test a consultar (Numero entero):");
      int consulta = in.nextInt();
      int indice2 = 0;
@@ -297,7 +323,7 @@ public static void consultaDeTesters (Sistema unSistema)
         if (unSistema.getListaTesteos().get(i).getNumero() == consulta){indice2 = i;}
        } 
      
-     
+     System.out.println("");
      System.out.println("Los datos del testeo son los siguiente:");
      System.out.println("");
      System.out.println(unSistema.getListaTesteos().get(indice2).toString());
