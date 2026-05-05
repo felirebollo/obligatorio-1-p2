@@ -68,19 +68,31 @@ public static void registrarTester (Sistema unSistema){
          nombre = in.nextLine();
       }
 
-      //Se eolicita la edada
-       System.out.println("");
-      System.out.println("Ingrese la edad del nuevo tester:");
-      int edad = in.nextInt();
+      //Se solicita la edad
+      
+      int edad = 0;
+      boolean valido1 = false;
 
-      //Se valida la edad
-      while (edad <= 0) {
+     while (!valido1) {
+     try {
+        System.out.println("");
+        System.out.println("Ingrese la edad del nuevo tester:");
+        edad = in.nextInt();
+
+         if (edad > 0) {
+            valido1 = true; // ✔ cumple condición
+        } else {
+             System.out.println("");
+            System.out.println("La edad debe ser positiva. Reingrese:");
+        }
+
+    } catch (Exception e) {
          System.out.println("");
-         System.out.println("La edad debe ser positiva. Reingrese:");
-         edad = in.nextInt();
-      }
-
-      //Se solicita la experiencia
+        System.out.println("Debe ingresar un numero valido");
+        in.nextLine(); // 
+    }
+}
+     //Se solicita la experiencia
       System.out.println("");
       System.out.println("Ingrese la experiencia del nuevo tester:");
       int experiencia = in.nextInt();
