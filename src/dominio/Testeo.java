@@ -1,5 +1,6 @@
 
 package dominio;
+import java.awt.BorderLayout;
 import java.util.Scanner;
 
 public class Testeo {
@@ -102,8 +103,6 @@ public class Testeo {
         return contador;
      }
     
-    
-    
     // Agregar comentario
     
     public static String agregaComentario ()
@@ -132,5 +131,141 @@ public class Testeo {
          return comentario;
     
     }
+ 
     
+    public static boolean validarMovimientoIndividual(Tablero unTablero){
+    
+    Scanner in = new Scanner (System.in);
+    boolean valido = true;
+    
+    String color = "";
+    String sentido = "";
+    int fila = 0;
+    int columna = 0;
+    int pasos = 0;
+        
+     
+    
+    System.out.println("Ingrese el color de la ficha a mover (B / N):" + "\n");
+    color = in.nextLine().toUpperCase();
+     
+     while (!color.equals("B") && !color.equals("N")) 
+     {
+        System.out.println("Debe ingresar el valor B o N :" + "\n");
+        color = in.nextLine().toUpperCase();
+     }
+
+         
+    
+     String sentidos = "";
+     if (color.equals("B")){sentidos = "(N, NE, NO, E, O)";} else {sentidos = " (S, SO, SE, E, O)";}
+     
+     System.out.println("Ingrese el sentido del movimiento" + sentidos);
+     sentido = in.nextLine().toUpperCase();
+     
+     boolean validoSentido = false;
+     while (!validoSentido) 
+     {
+        if (((color.equals("B")) && (sentido.equals("N") || sentido.equals("NE") || sentido.equals("NO") || sentido.equals("E") || sentido.equals("O"))) || 
+            ((color.equals("N")) && (sentido.equals("S") || sentido.equals("SO") || sentido.equals("SE") || sentido.equals("E") || sentido.equals("O"))) )
+             {validoSentido = true;} else {System.out.println("Debe ingresar los valores " + sentidos);}
+             sentido = in.nextLine().toUpperCase();
+      }
+         
+        
+      
+    boolean coinciden = false; // Detecta si coincide el color indicado con el color de la ficha de la celda indicada
+    while (!coinciden)
+    {
+            
+        boolean validaFila = false;
+        while (!validaFila) 
+
+        {
+               try {
+                 System.out.println("Ingrese fila de la ficha a mover (0-7) " + "\n");
+                 fila = in.nextInt();
+                 in.nextLine();
+
+                    if ((0 <= fila) && ( fila <= 7)){validaFila = true;} 
+                      else { System.out.println("Debe ingresar valores entre 0-7:"); }
+                    
+                      
+                    }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+
+        boolean validaColumna = false;
+        while (!validaColumna) 
+        {
+               try {
+                 System.out.println("Ingrese columna de la ficha a mover (0-9): " + "\n");
+                 columna = in.nextInt();
+                 in.nextLine();
+
+                 if ((0 <= columna) && ( columna <= 7)){validaColumna = true;} 
+                      else { System.out.println("Debe ingresar valores entre 0-7:"); }
+                      
+                   }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+        
+       if (unTablero.getValorCelda(fila, columna) == color.charAt(0)){coinciden = true;}
+       
+       else {System.out.println("El color de la ficha hallada en la celda y columna"
+                                  + " indicada no coinciden con el color indicado");}
+    
+    }
+      
+      boolean validaPasos = false;
+      while (!validaPasos) 
+        {
+               try 
+               {
+                 System.out.println("Ingrese la cantidad de pasos a dar: " + "\n");
+                 pasos = in.nextInt();
+                 in.nextLine();
+
+                 validaPasos = true;
+                }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+    
+     String otroColor = "B";
+     
+     if (color.equals("B")){otroColor = "N";}
+     
+     for (int i = 0 ; i < 8 ; i++)
+     {
+        for (int j = 0 ; j < 10 ; j++)
+         {
+            if ((sentido.equals("S")) && (fila != i) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') && (i <= fila + pasos))
+               {if( i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+           
+            if ((sentido.equals("N")) && (fila != i) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') && (i >= fila - pasos))
+               {if( j == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}
+         }
+     }
+    
+
+      return valido;
+    }
+ 
 }
+     
+     

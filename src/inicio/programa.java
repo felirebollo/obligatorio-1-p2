@@ -92,6 +92,7 @@ public static void registrarTester (Sistema unSistema){
      try {
         System.out.println("Ingrese la experiencia del nuevo tester:" + "\n");
         experiencia = in.nextInt();
+        in.nextLine();
 
          if (experiencia >= 0 && experiencia < edad) {
             valido2 = true; 
@@ -119,7 +120,7 @@ public static void registrarTester (Sistema unSistema){
         System.out.println("Debe ingresar SI o NO." + "\n");
         permanecer = in.nextLine();
       }
-      }
+  }
 }
    
    
@@ -248,7 +249,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                System.out.println("Testeo agregado exitosamente." + "\n");
                break;   
                
-            case 2:
+            case 2: System.out.println("El movimiento es valido? " + Testeo.validarMovimientoIndividual(unTablero));
             case 3:
             case 4:
             case 5:
