@@ -249,7 +249,8 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                System.out.println("Testeo agregado exitosamente." + "\n");
                break;   
                
-            case 2: System.out.println("El movimiento es valido? " + Testeo.validarMovimientoIndividual(unTablero));
+            case 2: if(Testeo.validarMovimientoIndividual(unTablero)){System.out.println("Su movimiento es valido");}
+                      else {System.out.println("Su movimiento no es valido");}
             case 3:
             case 4:
             case 5:

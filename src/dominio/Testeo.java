@@ -133,7 +133,7 @@ public class Testeo {
     }
  
     
-    public static boolean validarMovimientoIndividual(Tablero unTablero){
+    public static boolean validarMovimientoIndividual(Sistema unSistema, Tablero unTablero){
     
     Scanner in = new Scanner (System.in);
     boolean valido = true;
@@ -254,13 +254,36 @@ public class Testeo {
      {
         for (int j = 0 ; j < 10 ; j++)
          {
-            if ((sentido.equals("S")) && (fila != i) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') && (i <= fila + pasos))
+            if ((sentido.equals("S")) && (i > fila) && (i <= fila + pasos) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') )
                {if( i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
            
-            if ((sentido.equals("N")) && (fila != i) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') && (i >= fila - pasos))
-               {if( j == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}
-         }
-     }
+            if ((sentido.equals("N")) && (i < fila) && (i >= fila - pasos) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+           
+            if ((sentido.equals("O")) && (j < columna) && (j >= columna - pasos) && (fila == i) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( j == columna - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+           
+            if ((sentido.equals("E")) && (j > columna) && (j <= columna + pasos) && (fila == i) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( j == columna + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+           
+            if ((sentido.equals("NO")) && (j < columna) && (i < fila) && (i-j == fila-columna) && (j >= columna - pasos) && (i >= fila - pasos) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( j == columna - pasos && i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+            
+            if ((sentido.equals("NE")) && (j > columna) && (i < fila) && (i+j == fila+columna) && (j <= columna + pasos) && (i >= fila - pasos) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( j == columna + pasos && i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+            
+            if ((sentido.equals("SO")) && (j < columna) && (i > fila) && (i+j == fila+columna) && (j >= columna - pasos) && (i <= fila + pasos) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( j == columna - pasos && i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+            
+            if ((sentido.equals("SE")) && (j > columna) && (i > fila) && (i-j == fila-columna) && (j <= columna + pasos) && (i <= fila + pasos) && (unTablero.getValorCelda(i,j) != 'V') )
+               {if( j == columna + pasos && i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+            
+         }  
+      }
+       
+     Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero, "Parametro: " + letra );
+     nuevoTesteo.setCometario(Testeo.agregaComentario());
+     unSistema.agregarTesteo(nuevoTesteo);
     
 
       return valido;
