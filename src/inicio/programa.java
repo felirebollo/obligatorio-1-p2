@@ -288,6 +288,7 @@ public static void consultaDeTesters (Sistema unSistema)
      
      System.out.println("Ingrese el numero del tester a consultar: " + "\n");
      int indice  = in.nextInt() -1;
+     in.nextLine();
      
      // Del indice ingresado obtenemos el nombre del tester
      String nombre = unSistema.getListaTester().get(indice).getNombre();
@@ -313,6 +314,7 @@ public static void consultaDeTesters (Sistema unSistema)
      
      System.out.println("Ingrese el numero de test a consultar (Numero entero):"+ "\n");
      int consulta = in.nextInt();
+     in.nextLine();
      int indice2 = 0;
      
      for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
@@ -323,6 +325,7 @@ public static void consultaDeTesters (Sistema unSistema)
      System.out.println("Los datos del testeo son los siguiente:" + "\n");
      System.out.println(unSistema.getListaTesteos().get(indice2).toString());
      
+             
      if (unSistema.getListaTesteos().get(indice2).getTableroInicial().mismoTablero(unSistema.getListaTesteos().get(indice2).getTableroFinal()))
       {
         System.out.println("La matriz utilizada no tuvo modificaciones y es la siguiente:" + "\n");

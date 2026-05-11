@@ -156,8 +156,10 @@ public class Testeo {
      {
         if (((color.equals("B")) && (sentido.equals("N") || sentido.equals("NE") || sentido.equals("NO") || sentido.equals("E") || sentido.equals("O"))) || 
             ((color.equals("N")) && (sentido.equals("S") || sentido.equals("SO") || sentido.equals("SE") || sentido.equals("E") || sentido.equals("O"))) )
-             {validoSentido = true;} else {System.out.println("Debe ingresar los valores " + sentidos);}
-             sentido = in.nextLine().toUpperCase();
+             {validoSentido = true;} 
+           else {System.out.println("Debe ingresar los valores " + sentidos);
+                 sentido = in.nextLine().toUpperCase();}
+             
       }
          
         
@@ -238,6 +240,14 @@ public class Testeo {
      
      if (color.equals("B")){otroColor = "N";}
      
+     int mueveFilas = 0;
+     int mueveCols = 0;
+     
+     if (sentido.indexOf("S") != -1){mueveFilas = 1;}
+     if (sentido.indexOf("N") != -1){mueveFilas = -1;}
+     if (sentido.indexOf("O") != -1){mueveCols = -1;}
+     if (sentido.indexOf("E") != -1){mueveCols = 1;}
+     
      for (int i = 0 ; i < 8 ; i++)
      {
         for (int j = 0 ; j < 10 ; j++)
@@ -246,7 +256,7 @@ public class Testeo {
                {if( i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
            
             if ((sentido.equals("N")) && (i < fila) && (i >= fila - pasos) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+               {if( i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)) {} else {valido = false;}}                       
            
             if ((sentido.equals("O")) && (j < columna) && (j >= columna - pasos) && (fila == i) && (unTablero.getValorCelda(i,j) != 'V') )
                {if( j == columna - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
@@ -268,8 +278,20 @@ public class Testeo {
             
          }  
       }
-       
-     Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Restultado: " + valido , unTablero , unTablero, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
+     
+     Tablero tableroFinal = new Tablero(unTablero);
+        System.out.println("aun funciona");
+        
+         System.out.println("color " + color);
+     System.out.println("sentido: " + sentido);
+     
+     
+     tableroFinal.moverFichaIndividual(fila, columna, mueveFilas , mueveCols , pasos);
+    
+     System.out.println(unTablero.toString());
+     System.out.println(tableroFinal.toString());
+     
+     Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
      nuevoTesteo.setCometario(Testeo.agregaComentario());
      unSistema.agregarTesteo(nuevoTesteo);
     

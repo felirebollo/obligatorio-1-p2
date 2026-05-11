@@ -17,6 +17,20 @@ public class Tablero
                               {'V','V','B','B','V','V','B','B','V','V'}};
    }
   
+   // Constructor para hacer un nuevo tablero en memoria a partir del tablero inicial
+  public Tablero(Tablero otro)
+{
+    tablero = new char[8][10];
+
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            tablero[i][j] = otro.getValorCelda(i, j);
+        }
+    }
+}
+  
   @Override
   public String toString () {
     String salida = "";
@@ -67,6 +81,30 @@ public class Tablero
  return sonIguales;
 
   }
+
+
+
+public void moverFichaIndividual (int filaOrigen, int colOrigen, int movFilas , int movCols, int pasos)
+ { 
+   int filaDest = 0;
+   int colDest = 0;
+     
+   if (movFilas == 0){filaDest = filaOrigen;} else {filaDest = filaOrigen + movFilas * pasos;}
+   if (movCols == 0){colDest = colOrigen;} else {colDest = colOrigen + movCols * pasos;}
+   
+   System.out.println(filaOrigen);
+     System.out.println(filaDest);
+     System.out.println(colOrigen);
+     System.out.println(colDest);
+     
+     System.out.println(movFilas);
+     System.out.println(movCols);
+   tablero [filaDest][colDest] = tablero [filaOrigen][colOrigen];
+   
+         
+   tablero [filaOrigen][colOrigen] = 'V';
+ }
+        
 
 }
 
