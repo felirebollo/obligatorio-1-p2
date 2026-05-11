@@ -249,7 +249,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                System.out.println("Testeo agregado exitosamente." + "\n");
                break;   
                
-            case 2: if(Testeo.validarMovimientoIndividual(unTablero)){System.out.println("Su movimiento es valido");}
+            case 2: if(Testeo.validarMovimientoIndividual(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido");}
                       else {System.out.println("Su movimiento no es valido");}
             case 3:
             case 4:
@@ -322,8 +322,22 @@ public static void consultaDeTesters (Sistema unSistema)
      
      System.out.println("Los datos del testeo son los siguiente:" + "\n");
      System.out.println(unSistema.getListaTesteos().get(indice2).toString());
-     System.out.println("La matriz utilizada no tuvo modificaciones y es la siguiente:" + "\n");
-     System.out.println(unSistema.getListaTesteos().get(indice2).getTableroInicial().toString() + "\n");
+     
+     if (unSistema.getListaTesteos().get(indice2).getTableroInicial().mismoTablero(unSistema.getListaTesteos().get(indice2).getTableroFinal()))
+      {
+        System.out.println("La matriz utilizada no tuvo modificaciones y es la siguiente:" + "\n");
+        System.out.println(unSistema.getListaTesteos().get(indice2).getTableroInicial().toString() + "\n");
+      
+      }
+         
+     else {
+            System.out.println("El tablero inicial es: " + "\n");
+            System.out.println(unSistema.getListaTesteos().get(indice2).getTableroInicial().toString() + "\n");
+            System.out.println("El tablero final es: " + "\n");      
+            System.out.println(unSistema.getListaTesteos().get(indice2).getTableroFinal().toString() + "\n");
+
+                  
+          }
 
      
      

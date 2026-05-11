@@ -1,6 +1,5 @@
 
 package dominio;
-import java.awt.BorderLayout;
 import java.util.Scanner;
 
 public class Testeo {
@@ -29,64 +28,53 @@ public class Testeo {
     public void setNumero(int unNumero) {
         numero = unNumero;
     }
-
     public Tester getTester() {
         return tester;
     }
     public void setTester(Tester unTester) {
         tester = unTester;
     }
-
     public String getTipo() {
         return tipo;
     }
     public void setTipo(String unTipo) {
         tipo = unTipo;
     }
-
     public String getResultado() {
         return resultado;
     }
     public void setResultado(String unResultado) {
         resultado = unResultado;
     }
-    
     public Tablero getTableroInicial () {
       return tableroInicial;
     }
-    
     public Tablero getTableroFinal() {
      return tableroFinal;
     }
-    
     public String getComentario () {
      return comentario;
     }
-    
     public void setCometario (String unComentario){
       comentario = unComentario;
     }
     public void setTableroInicial (Tablero unTablero){
       tableroInicial = unTablero;
     }
-    
     public void setTableroFinal (Tablero unTablero){
       tableroFinal = unTablero;
     }
-   public void setParametro (String unParametro){
+    public void setParametro (String unParametro){
     parametro = unParametro;
    }
-   
-   public String getParametro (){
+    public String getParametro (){
     return parametro;
    }
- 
-    @Override
+     @Override
     public String toString() {
         return "Testeo Nro: " + this.getNumero() + " -  Tipo de testeo: " + this.getTipo() + " - Tester: " + this.getTester().getNombre() + " - Resultado: " + this.getResultado() +" - "+ this.getParametro() + " - Comentario: " + this.getComentario() ;
     }
 
-    
     //Cuenta cuantas fichas hay de un tipo en el tablero
     public static int contarFichas (Tablero unTablero, char letra){  
         int contador = 0 ;
@@ -133,7 +121,7 @@ public class Testeo {
     }
  
     
-    public static boolean validarMovimientoIndividual(Sistema unSistema, Tablero unTablero){
+    public static boolean validarMovimientoIndividual(Sistema unSistema, Tablero unTablero, Tester testerElegido){
     
     Scanner in = new Scanner (System.in);
     boolean valido = true;
@@ -209,7 +197,7 @@ public class Testeo {
                  in.nextLine();
 
                  if ((0 <= columna) && ( columna <= 7)){validaColumna = true;} 
-                      else { System.out.println("Debe ingresar valores entre 0-7:"); }
+                      else { System.out.println("Debe ingresar valores entre 0-9:"); }
                       
                    }
 
@@ -281,7 +269,7 @@ public class Testeo {
          }  
       }
        
-     Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero, "Parametro: " + letra );
+     Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Restultado: " + valido , unTablero , unTablero, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
      nuevoTesteo.setCometario(Testeo.agregaComentario());
      unSistema.agregarTesteo(nuevoTesteo);
     
