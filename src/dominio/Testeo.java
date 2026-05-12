@@ -76,9 +76,13 @@ public class Testeo {
     }
 
     //Cuenta cuantas fichas hay de un tipo en el tablero
-    public static int contarFichas (Tablero unTablero, char letra){  
+    public static int contarFichas (Tablero unTablero, char letra, Sistema unSistema){  
+       
         int contador = 0 ;
         
+        unTablero = new Tablero (unSistema.getUltimoTablero());
+        
+        System.out.println(unTablero.toString());
         for (int i = 0 ; i < 8 ; i++) {
            for (int j = 0 ; j < 10 ; j++){
                if (unTablero.getValorCelda(i,j) == letra){
@@ -125,6 +129,8 @@ public class Testeo {
     
     Scanner in = new Scanner (System.in);
     boolean valido = true;
+    
+    unTablero = new Tablero (unSistema.getUltimoTablero());
     
     String color = "";
     String sentido = "";
@@ -294,7 +300,7 @@ public class Testeo {
      Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
      nuevoTesteo.setCometario(Testeo.agregaComentario());
      unSistema.agregarTesteo(nuevoTesteo);
-    
+     unSistema.setUltimoTablero(tableroFinal);
 
       return valido;
     }

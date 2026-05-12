@@ -10,7 +10,7 @@ public static void main(String[] args) {
        
    Scanner in = new Scanner (System.in);
 
-   Sistema sistema = new Sistema();
+   Sistema unSistema = new Sistema();
    Tablero unTablero = new Tablero();
       
       
@@ -31,10 +31,10 @@ public static void main(String[] args) {
           
       switch (opcion){
              
-         case 'a': registrarTester (sistema);break;
-         case 'b': registrarTablero(unTablero);break;
-         case 'c': registrarTesteo(sistema, unTablero);break;
-         case 'd': consultaDeTesters (sistema);break;
+         case 'a': registrarTester (unSistema);break;
+         case 'b': registrarTablero(unSistema);break;
+         case 'c': registrarTesteo(unSistema);break;
+         case 'd': consultaDeTesters (unSistema);break;
          case 'e':
       } 
       
@@ -106,11 +106,8 @@ public static void registrarTester (Sistema unSistema){
     }
 } 
      
-     
-   
-
-      Tester nuevo = new Tester(nombre, edad, experiencia);
-      unSistema.agregarTester(nuevo);
+     Tester nuevo = new Tester(nombre, edad, experiencia);
+     unSistema.agregarTester(nuevo);
       
       System.out.println("Desea agregar un nuevo tester: (SI/NO)" + "\n");
       permanecer = in.nextLine();
@@ -128,34 +125,44 @@ public static void registrarTester (Sistema unSistema){
 //-----------------------------------B) REGISTRAR MATRIZ---------------------------------------------------
     
       
-public static void registrarTablero (Tablero nuevoTablero){
+public static void registrarTablero (Sistema unSistema){
    Scanner in = new Scanner (System.in);
-   System.out.println("El tablero cargado por defecto es el siguiente:");
+   System.out.println("El tablero cargado es el siguiente:");
    System.out.println("");
+   
+   Tablero nuevoTablero = new Tablero (unSistema.getUltimoTablero());
+           
    System.out.println(nuevoTablero.toString());
    System.out.println("");
        
    String ingresaNuevo = "";
-   System.out.println("Desea ingresar un tablero diferente?");
+   System.out.println("Desea ingresar un tablero diferente? (SI/NO)" );
    ingresaNuevo = in.nextLine();
+   
+   while (!ingresaNuevo.equalsIgnoreCase("SI") && !ingresaNuevo.equalsIgnoreCase("NO"))
+    {
+        System.out.println("Debe ingresar SI o NO:");
+        ingresaNuevo = in.nextLine();
+    }
        
    if(ingresaNuevo.equalsIgnoreCase("si")){
       String linea = "";
       System.out.println("");
       for (int i = 1 ; i <= 8 ; i++){
          System.out.println("Ingrese la linea " + i + ":");
-         linea = in.nextLine();
+         linea = in.nextLine().toUpperCase();
 
          //Valida que la linea tenga 10 caracteres y solo use B N o V
          while (!lineaValida(linea)) {
             System.out.println("Linea invalida. Debe tener 10 caracteres y solo usar B, N o V.");
             System.out.println("Ingrese la linea " + i + ":");
-            linea = in.nextLine();
+            linea = in.nextLine().toUpperCase();
          }
                 
          nuevoTablero.setTablero(linea, i-1);
               
       } 
+      unSistema.setUltimoTablero(nuevoTablero);
       System.out.println("");
       System.out.println("El nuevo tablero es el siguiente:");
       System.out.println("");
@@ -183,9 +190,17 @@ public static boolean lineaValida(String linea) {
     
  //---------------------------------C) REGISTRAR TESTEO--------------------------------------
  
-public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
+public static void registrarTesteo (Sistema unSistema){
+   
    Scanner in = new Scanner (System.in);
    int numero = 0;
+   
+   Tablero unTablero = new Tablero ();
+   
+    System.out.println("modificado");
+    System.out.println(unTablero.toString());
+   
+   
    
    // Se valida que haya testers registrados antes de hacer un testeo
    if (unSistema.getListaTester().size() == 0) {
@@ -238,7 +253,7 @@ public static void registrarTesteo (Sistema unSistema, Tablero unTablero){
                char letra = aux.charAt(0);
                
                // Se calcula el resultado y se muestra
-               int cantidad = Testeo.contarFichas(unTablero, letra);
+               int cantidad = Testeo.contarFichas(unTablero, letra, unSistema);
                System.out.println("El valor buscado se encuentra en " + cantidad + " celdas" + "\n");
                              
                // Se crea el testeo y se guarda en el sistema

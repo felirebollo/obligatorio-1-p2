@@ -12,7 +12,17 @@ import java.util.ArrayList;
 public class Sistema {
      private ArrayList<Tester> listaTesters = new ArrayList<>();  
      private ArrayList<Testeo> listaTesteos = new ArrayList<>();
+     private Tablero ultimoTablero = new Tablero ();
 
+     
+     public void setUltimoTablero (Tablero unTablero)
+      {ultimoTablero = unTablero;}
+     
+     public Tablero getUltimoTablero ()
+      {
+       return ultimoTablero;
+      }
+     
      // Guarda el proximo numero de testeo
      private int proximoNumeroTesteo = 1;
      
@@ -55,9 +65,34 @@ public class Sistema {
      proximoNumeroTesteo = proximoNumeroTesteo + 1;
      return numero;
 }
-    
-    
-    
+     public boolean existeTester (String nombre)
+      {
+         boolean existe = false;
+         
+         for (int i = 0 ; i < this.getListaTester().size() ; i++)
+         {
+                if(this.getListaTester().get(i).getNombre().equalsIgnoreCase(nombre)){existe = true;}
+         }
+         return existe;
+      }
+     
+        
+   /* 
+     VER PARA BORRRAR
+     public Tablero getUltimoTablero ()
+     {
+       Tablero salida = new Tablero ();
+       int ultimo = this.getListaTesteos().size();
+       
+       if (ultimo > 0)
+       {
+         salida = this.getListaTesteos().get(ultimo-1).getTableroFinal();
+       } 
+       
+        return salida;
+     }
+    */ 
+     
    }
 
 
