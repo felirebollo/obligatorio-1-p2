@@ -309,6 +309,8 @@ public class Testeo {
     public static boolean validarMovimientoGrupal (Sistema unSistema, Tablero unTablero, Tester testerElegido)
     {
     
+    // Defino variables 
+        
     Scanner in = new Scanner (System.in);
     boolean valido = true;
     
@@ -321,6 +323,8 @@ public class Testeo {
     int columna = 0;
     int largo = 0;
     
+    // Valido ingreso de color
+    
     System.out.println("Ingrese el color de la ficha a mover (B / N):" + "\n");
     color = in.nextLine().toUpperCase();
      
@@ -330,6 +334,8 @@ public class Testeo {
         color = in.nextLine().toUpperCase();
      }
      
+     
+     // Valido ingreso de forma
      System.out.println("Ingrese la forma del grupo: (B / N):" + "\n");
     forma = in.nextLine().toUpperCase();
      
@@ -339,7 +345,7 @@ public class Testeo {
         forma = in.nextLine().toUpperCase();
      }
 
-   
+    // Valido ingreso de sentido
      System.out.println("Eligio el color: " + color + " y la forma: " + forma + "\n");
      
      if (forma.equalsIgnoreCase("V"))
@@ -355,7 +361,7 @@ public class Testeo {
          }
       }
      
-     
+    // Valido ingreso de sentido
      if (forma.equalsIgnoreCase("H")) 
      {
        if (color.equalsIgnoreCase("B"))
@@ -382,8 +388,8 @@ public class Testeo {
          }
        }
      }
-     
-    boolean coinciden = false; // Detecta si coincide el color indicado con el color de la ficha de la celda indicada
+    // Valida el ingreso de la celda extremo, que el color de la celda coincida con el ingresado
+    boolean coinciden = false; 
     while (!coinciden)
     {
             
@@ -436,7 +442,7 @@ public class Testeo {
     
     }
       
-     
+      // Valida el largo del grupo, que en todas las celdas del grupo coincida con el color elegido
       boolean validaGrupo = false;
       int largoMaximo = 0;
       if (forma.equalsIgnoreCase("V")){largoMaximo = 8;} else {largoMaximo = 10;}
@@ -466,20 +472,37 @@ public class Testeo {
         }
           
          
-       
+         validaGrupo = true;
+         
+         for (int i = 0 ; i <= largo ; i++)
+          {
+             if (forma.equalsIgnoreCase("V"))
+              {
+                int auxFila = fila + i;
+                             
+                 if (unTablero.getValorCelda(auxFila, columna) != color.charAt(0)){validaGrupo = false;}
+              
+              }
+             
+             if (forma.equalsIgnoreCase("H"))
+              {
+                int auxCol = columna + 1;
+                
+                if (unTablero.getValorCelda(fila, auxCol) != color.charAt(0)){validaGrupo = false;}
+              
+              }
+          }
+            if (validaGrupo){System.out.println("coincicen");} else {System.out.println("no coinciden");} 
+        }
+        
+      return valido;
        }
-           
+    }
+    
        
-       
-       
-       
-       
-       
-       
-       
-       }
+
       
     
-   }
+   
      
-} 
+ 

@@ -266,7 +266,7 @@ public static void registrarTesteo (Sistema unSistema){
                
             case 2: if(Testeo.validarMovimientoIndividual(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido");}
                       else {System.out.println("Su movimiento no es valido");}
-            case 3:
+            case 3: System.out.println(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido));
             case 4:
             case 5:
          }
