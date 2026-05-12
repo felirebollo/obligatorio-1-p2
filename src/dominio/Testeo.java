@@ -305,6 +305,181 @@ public class Testeo {
       return valido;
     }
  
-}
+    
+    public static boolean validarMovimientoGrupal (Sistema unSistema, Tablero unTablero, Tester testerElegido)
+    {
+    
+    Scanner in = new Scanner (System.in);
+    boolean valido = true;
+    
+    unTablero = new Tablero (unSistema.getUltimoTablero());
+    
+    String color = "";
+    String forma = "";
+    String sentido = "";
+    int fila = 0;
+    int columna = 0;
+    int largo = 0;
+    
+    System.out.println("Ingrese el color de la ficha a mover (B / N):" + "\n");
+    color = in.nextLine().toUpperCase();
+     
+     while (!color.equals("B") && !color.equals("N")) 
+     {
+        System.out.println("Debe ingresar el valor B o N :" + "\n");
+        color = in.nextLine().toUpperCase();
+     }
+     
+     System.out.println("Ingrese la forma del grupo: (B / N):" + "\n");
+    forma = in.nextLine().toUpperCase();
+     
+     while (!forma.equals("V") && !color.equals("H")) 
+     {
+        System.out.println("Debe ingresar el valor V o H :" + "\n");
+        forma = in.nextLine().toUpperCase();
+     }
+
+   
+     System.out.println("Eligio el color: " + color + " y la forma: " + forma + "\n");
+     
+     if (forma.equalsIgnoreCase("V"))
+      {
+          
+        System.out.println("Ingrese el sentido de la jugada: (E/O");
+        sentido = in.nextLine();
+           
+        while (!sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
+         {
+           System.out.println("Debe ingresar los valores E o O");
+           sentido = in.nextLine();
+         }
+      }
      
      
+     if (forma.equalsIgnoreCase("H")) 
+     {
+       if (color.equalsIgnoreCase("B"))
+       {
+         System.out.println("Ingrese el sentido de la jugada: (N/E/O");
+        sentido = in.nextLine();
+           
+        while (!sentido.equalsIgnoreCase("N") && !sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
+         {
+           System.out.println("Debe ingresar los valores N, E o O");
+           sentido = in.nextLine();
+         }
+       }
+       
+        if (color.equalsIgnoreCase("N"))
+       {
+         System.out.println("Ingrese el sentido de la jugada: (S/E/O");
+         sentido = in.nextLine();
+           
+        while (!sentido.equalsIgnoreCase("S") && !sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
+         {
+           System.out.println("Debe ingresar los valores S, E o O");
+           sentido = in.nextLine();
+         }
+       }
+     }
+     
+    boolean coinciden = false; // Detecta si coincide el color indicado con el color de la ficha de la celda indicada
+    while (!coinciden)
+    {
+            
+        boolean validaFila = false;
+        while (!validaFila) 
+
+        {
+               try {
+                 System.out.println("Ingrese fila de la ficha a mover (0-7) " + "\n");
+                 fila = in.nextInt();
+                 in.nextLine();
+
+                    if ((0 <= fila) && ( fila <= 7)){validaFila = true;} 
+                      else { System.out.println("Debe ingresar valores entre 0-7:"); }
+                    
+                      
+                    }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+
+        boolean validaColumna = false;
+        while (!validaColumna) 
+        {
+               try {
+                 System.out.println("Ingrese columna de la ficha a mover (0-9): " + "\n");
+                 columna = in.nextInt();
+                 in.nextLine();
+
+                 if ((0 <= columna) && ( columna <= 7)){validaColumna = true;} 
+                      else { System.out.println("Debe ingresar valores entre 0-9:"); }
+                      
+                   }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+        
+         if (unTablero.getValorCelda(fila, columna) == color.charAt(0)){coinciden = true;}
+       
+       else {System.out.println("El color de la ficha hallada en la celda y columna"
+                                  + " indicada no coinciden con el color indicado");}
+    
+    }
+      
+     
+      boolean validaGrupo = false;
+      int largoMaximo = 0;
+      if (forma.equalsIgnoreCase("V")){largoMaximo = 8;} else {largoMaximo = 10;}
+      
+      while (!validaGrupo)
+       {
+           
+         boolean validaLargo = false;
+         while (!validaLargo) 
+        {   
+            
+               try {
+                 System.out.println("Ingrese el largo del grupo: " + "\n");
+                 largo = in.nextInt();
+                 in.nextLine();
+
+                 if (largo > 0 && largo <= largoMaximo){validaLargo = true;} 
+                      else { System.out.println("Ingreso valores fuera de rango: "); }
+                      
+                   }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+          
+         
+       
+       }
+           
+       
+       
+       
+       
+       
+       
+       
+       
+       }
+      
+    
+   }
+     
+} 
