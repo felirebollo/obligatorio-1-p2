@@ -319,6 +319,7 @@ public class Testeo {
     String color = "";
     String forma = "";
     String sentido = "";
+    int pasos = 0;
     int fila = 0;
     int columna = 0;
     int largo = 0;
@@ -336,10 +337,10 @@ public class Testeo {
      
      
      // Valido ingreso de forma
-     System.out.println("Ingrese la forma del grupo: (B / N):" + "\n");
+     System.out.println("Ingrese la forma del grupo: (V / H):" + "\n");
     forma = in.nextLine().toUpperCase();
      
-     while (!forma.equals("V") && !color.equals("H")) 
+     while (!forma.equals("V") && !forma.equals("H")) 
      {
         System.out.println("Debe ingresar el valor V o H :" + "\n");
         forma = in.nextLine().toUpperCase();
@@ -351,7 +352,7 @@ public class Testeo {
      if (forma.equalsIgnoreCase("V"))
       {
           
-        System.out.println("Ingrese el sentido de la jugada: (E/O");
+        System.out.println("Ingrese el sentido de la jugada: (E/O)");
         sentido = in.nextLine();
            
         while (!sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
@@ -366,7 +367,7 @@ public class Testeo {
      {
        if (color.equalsIgnoreCase("B"))
        {
-         System.out.println("Ingrese el sentido de la jugada: (N/E/O");
+         System.out.println("Ingrese el sentido de la jugada: (N/E/O)");
         sentido = in.nextLine();
            
         while (!sentido.equalsIgnoreCase("N") && !sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
@@ -378,7 +379,7 @@ public class Testeo {
        
         if (color.equalsIgnoreCase("N"))
        {
-         System.out.println("Ingrese el sentido de la jugada: (S/E/O");
+         System.out.println("Ingrese el sentido de la jugada: (S/E/O)");
          sentido = in.nextLine();
            
         while (!sentido.equalsIgnoreCase("S") && !sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
@@ -443,9 +444,10 @@ public class Testeo {
     }
       
       // Valida el largo del grupo, que en todas las celdas del grupo coincida con el color elegido
+     
       boolean validaGrupo = false;
       int largoMaximo = 0;
-      if (forma.equalsIgnoreCase("V")){largoMaximo = 8;} else {largoMaximo = 10;}
+      if (forma.equalsIgnoreCase("V")){largoMaximo = 8 - fila;} else {largoMaximo = 10 - columna;}
       
       while (!validaGrupo)
        {
@@ -460,7 +462,8 @@ public class Testeo {
                  in.nextLine();
 
                  if (largo > 0 && largo <= largoMaximo){validaLargo = true;} 
-                      else { System.out.println("Ingreso valores fuera de rango: "); }
+                      else { System.out.println("Ingreso valores fuera de rango." + "\n" + 
+                                                "Largo maximo posible sin salir del tablero " + largoMaximo);}
                       
                    }
 
@@ -471,30 +474,88 @@ public class Testeo {
               }
         }
           
-         
+         int largoMaxColor = 0;
          validaGrupo = true;
          
-         for (int i = 0 ; i <= largo ; i++)
+         for (int i = 0 ; i < largo && validaGrupo; i++)
           {
              if (forma.equalsIgnoreCase("V"))
               {
                 int auxFila = fila + i;
                              
-                 if (unTablero.getValorCelda(auxFila, columna) != color.charAt(0)){validaGrupo = false;}
-              
+                 if (unTablero.getValorCelda(auxFila, columna) != color.charAt(0)){validaGrupo = false; largoMaxColor = i;}
+                      
               }
              
              if (forma.equalsIgnoreCase("H"))
               {
                 int auxCol = columna + 1;
                 
-                if (unTablero.getValorCelda(fila, auxCol) != color.charAt(0)){validaGrupo = false;}
+                if (unTablero.getValorCelda(fila, auxCol) != color.charAt(0)){validaGrupo = false; largoMaxColor = i;}
               
               }
           }
-            if (validaGrupo){System.out.println("coincicen");} else {System.out.println("no coinciden");} 
+            if (validaGrupo)
+              { 
+                  System.out.println ("El grupo ingresado es valido");
+              }
+                    
+            else {
+                   System.out.println
+                  
+                    ("Parametros ingresados: " + "\n" +
+                     "Color: " + color +  "\n" +
+                     "Fila: " + fila +  "\n" +
+                     "Columna: " + columna + "\n" +  "\n" + 
+                     "Las celdas que quedan abarcadas en el largo ingresado son diferentes al color del grupo " +  "\n" +
+                     "El largo maximo posible del grupo es " + largoMaxColor);
+                  } 
         }
-        
+         boolean puedeDarPasos = true;
+         
+         
+         int pasosMaximo = 0;
+         if (forma.equals("V"))
+           {
+              if (sentido.equals("O")){pasosMaximo = columna;} else {pasosMaximo = 9 - columna;}
+           }
+         
+         else 
+           {
+             if (sentido.equals("N")){pasosMaximo = fila;} else {pasosMaximo = 7 - fila;}
+               
+           }
+         
+         if (pasosMaximo == 0){puedeDarPasos = false; valido = false;}
+         
+         /*La logica del codigo es que controle el ingreso de parametros (color, sentido, fila, columna y largo)
+           hasta la consitucion del grupo, una vez creado el grupo, si este no puede dar pasos directamente 
+           retorna falso, si puede dar pasos, controla que el usuario ingrese la cantidad de pasos permitida,
+           y retorna true*/
+         
+         boolean validaPasos = false;
+         while (!validaPasos && puedeDarPasos) 
+        {   
+            
+               try {
+                 System.out.println("Ingrese el numero de pasos: " + "\n");
+                 pasos = in.nextInt();
+                 in.nextLine();
+
+                 if (largo > 0 && largo <= pasosMaximo){validaPasos = true;} 
+                      else { System.out.println("Ingreso valores fuera de lo permitido." + "\n" + 
+                                                "Los pasos maximos posible son: " + pasosMaximo);}
+                      
+                   }
+
+              catch (Exception e) 
+              {
+                 System.out.println("Debe ingresar un numero entero:" + "\n");
+                 in.nextLine(); // 
+              }
+        }
+       
+       
       return valido;
        }
     }

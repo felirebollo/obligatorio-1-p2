@@ -4,14 +4,16 @@ public class Test {
     
    public static void main(String[] args){
    
-    Sistema programa = new Sistema();
+    Sistema unSistema = new Sistema();
       
-     Tablero nuevo = new Tablero();
+     Tablero unTablero = new Tablero();
     
-       System.out.println(nuevo.toString());
+     Tester testerElegido = new Tester ("Martin", 18 ,6);
        
-     
+       System.out.println(unTablero.toString());
    
+      System.out.println(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido)); 
+       
    }
           
     
