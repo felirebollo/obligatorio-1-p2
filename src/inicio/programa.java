@@ -197,11 +197,6 @@ public static void registrarTesteo (Sistema unSistema){
    
    Tablero unTablero = new Tablero ();
    
-    System.out.println("modificado");
-    System.out.println(unTablero.toString());
-   
-   
-   
    // Se valida que haya testers registrados antes de hacer un testeo
    if (unSistema.getListaTester().size() == 0) {
       System.out.println("No hay testers registrados. Debe registrar un tester primero." + "\n");
@@ -264,9 +259,16 @@ public static void registrarTesteo (Sistema unSistema){
                System.out.println("Testeo agregado exitosamente." + "\n");
                break;   
                
-            case 2: if(Testeo.validarMovimientoIndividual(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido");}
-                      else {System.out.println("Su movimiento no es valido");}
-            case 3: System.out.println(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido));
+            case 2: System.out.println(unSistema.getUltimoTablero().toString());
+                if(Testeo.validarMovimientoIndividual(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido");}
+                      else {System.out.println("Su movimiento no es valido");} 
+                System.out.println(unSistema.getUltimoTablero().toString());
+            ;break;
+                      
+            case 3: 
+                System.out.println(unSistema.getUltimoTablero().toString());
+                System.out.println(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido));
+                System.out.println(unSistema.getUltimoTablero().toString());break;
             case 4:
             case 5:
          }

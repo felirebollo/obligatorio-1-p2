@@ -9,10 +9,10 @@ public class Tablero
    {
     tablero =  new char [][] {{'V','V','N','N','V','V','N','N','V','V'},
                               {'N','N','N','N','N','N','N','N','N','N'},
-                              {'V','N','N','V','V','N','N','V','V','N'},
+                              {'V','V','N','V','V','N','N','V','V','N'},
                               {'V','V','V','V','V','V','V','V','V','V'},
                               {'V','V','V','V','V','V','V','V','V','V'},
-                              {'V','B','B','V','V','B','B','V','V','B'},
+                              {'B','B','B','V','V','B','B','V','V','B'},
                               {'B','B','B','B','B','B','B','B','B','B'},
                               {'V','V','B','B','V','V','B','B','V','V'}};
    }
@@ -92,19 +92,16 @@ public void moverFichaIndividual (int filaOrigen, int colOrigen, int movFilas , 
    if (movFilas == 0){filaDest = filaOrigen;} else {filaDest = filaOrigen + movFilas * pasos;}
    if (movCols == 0){colDest = colOrigen;} else {colDest = colOrigen + movCols * pasos;}
    
-   System.out.println(filaOrigen);
-     System.out.println(filaDest);
-     System.out.println(colOrigen);
-     System.out.println(colDest);
-     
-     System.out.println(movFilas);
-     System.out.println(movCols);
    tablero [filaDest][colDest] = tablero [filaOrigen][colOrigen];
    
          
    tablero [filaOrigen][colOrigen] = 'V';
+    
+
  }
-        
+   
+  
+  
 
 }
 

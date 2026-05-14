@@ -204,7 +204,7 @@ public class Testeo {
                  columna = in.nextInt();
                  in.nextLine();
 
-                 if ((0 <= columna) && ( columna <= 7)){validaColumna = true;} 
+                 if ((0 <= columna) && ( columna <= 9)){validaColumna = true;} 
                       else { System.out.println("Debe ingresar valores entre 0-9:"); }
                       
                    }
@@ -286,17 +286,11 @@ public class Testeo {
       }
      
      Tablero tableroFinal = new Tablero(unTablero);
-        System.out.println("aun funciona");
         
-         System.out.println("color " + color);
-     System.out.println("sentido: " + sentido);
-     
-     
-     tableroFinal.moverFichaIndividual(fila, columna, mueveFilas , mueveCols , pasos);
+     if (valido)
+     {tableroFinal.moverFichaIndividual(fila, columna, mueveFilas , mueveCols , pasos);}
     
-     System.out.println(unTablero.toString());
-     System.out.println(tableroFinal.toString());
-     
+      
      Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
      nuevoTesteo.setCometario(Testeo.agregaComentario());
      unSistema.agregarTesteo(nuevoTesteo);
@@ -353,12 +347,12 @@ public class Testeo {
       {
           
         System.out.println("Ingrese el sentido de la jugada: (E/O)");
-        sentido = in.nextLine();
+        sentido = in.nextLine().toUpperCase();
            
         while (!sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
          {
            System.out.println("Debe ingresar los valores E o O");
-           sentido = in.nextLine();
+           sentido = in.nextLine().toUpperCase();
          }
       }
      
@@ -367,29 +361,39 @@ public class Testeo {
      {
        if (color.equalsIgnoreCase("B"))
        {
-         System.out.println("Ingrese el sentido de la jugada: (N/E/O)");
-        sentido = in.nextLine();
+         System.out.println("Ingrese el sentido de la jugada: (N)");
+         sentido = in.nextLine().toUpperCase();
            
-        while (!sentido.equalsIgnoreCase("N") && !sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
+        while (!sentido.equalsIgnoreCase("N"))
          {
-           System.out.println("Debe ingresar los valores N, E o O");
-           sentido = in.nextLine();
+           System.out.println("Debe ingresar el valor N");
+           sentido = in.nextLine().toUpperCase();
          }
        }
        
         if (color.equalsIgnoreCase("N"))
        {
-         System.out.println("Ingrese el sentido de la jugada: (S/E/O)");
-         sentido = in.nextLine();
+         System.out.println("Ingrese el sentido de la jugada: (S)");
+         sentido = in.nextLine().toUpperCase();
            
-        while (!sentido.equalsIgnoreCase("S") && !sentido.equalsIgnoreCase("E") && !sentido.equalsIgnoreCase("O"))
+        while (!sentido.equalsIgnoreCase("S"))
          {
-           System.out.println("Debe ingresar los valores S, E o O");
-           sentido = in.nextLine();
+           System.out.println("Debe ingresar el valor S");
+           sentido = in.nextLine().toUpperCase();
          }
        }
      }
-    // Valida el ingreso de la celda extremo, que el color de la celda coincida con el ingresado
+     
+     // Esto es para despues usar el metodo mueveFilasIndividual de la clase Tablero al final de este metodo
+     int mueveFilas = 0;
+     int mueveCols = 0;
+     
+     if (sentido.indexOf("S") != -1){mueveFilas = 1;}
+     if (sentido.indexOf("N") != -1){mueveFilas = -1;}
+     if (sentido.indexOf("O") != -1){mueveCols = -1;}
+     if (sentido.indexOf("E") != -1){mueveCols = 1;}
+    
+   // Valida el ingreso de la celda extremo, que el color de la celda coincida con el ingresado
     boolean coinciden = false; 
     while (!coinciden)
     {
@@ -447,6 +451,7 @@ public class Testeo {
      
       boolean validaGrupo = false;
       int largoMaximo = 0;
+      
       if (forma.equalsIgnoreCase("V")){largoMaximo = 8 - fila;} else {largoMaximo = 10 - columna;}
       
       while (!validaGrupo)
@@ -512,8 +517,7 @@ public class Testeo {
                   } 
         }
          boolean puedeDarPasos = true;
-         
-         
+       
          int pasosMaximo = 0;
          if (forma.equals("V"))
            {
@@ -538,11 +542,11 @@ public class Testeo {
         {   
             
                try {
-                 System.out.println("Ingrese el numero de pasos: " + "\n");
+                 System.out.println("Ingrese el numero de pasos. Pasos maximos dentro del rango del tablero: " + pasosMaximo + "\n");
                  pasos = in.nextInt();
                  in.nextLine();
 
-                 if (largo > 0 && largo <= pasosMaximo){validaPasos = true;} 
+                 if (pasos > 0 && pasos <= pasosMaximo){validaPasos = true;} 
                       else { System.out.println("Ingreso valores fuera de lo permitido." + "\n" + 
                                                 "Los pasos maximos posible son: " + pasosMaximo);}
                       
@@ -555,6 +559,52 @@ public class Testeo {
               }
         }
        
+         for (int i = 0 ; i < 8 ; i++)
+           {
+            for (int j = 0 ; j < 10 ; j++)
+             {
+               if (sentido.equals("N") && j >= columna && j < columna + largo && i >= fila - pasos && i < fila)
+                 {if (unTablero.getValorCelda(i,j) != 'V') {valido = false;}}
+              
+               if (sentido.equals("S") && j >= columna && j < columna + largo && i <= fila + pasos && i > fila )
+                 {if (unTablero.getValorCelda(i,j) != 'V') {valido = false;}}
+               
+               if (sentido.equals("O") && i >= fila && i < fila + largo && j < columna  &&  j >= columna - pasos )
+                 {if (unTablero.getValorCelda(i,j) != 'V') {valido = false;}}
+               
+               if (sentido.equals("E") && i >= fila && i < fila + largo && j > columna  &&  j <= columna + pasos )
+                 {if (unTablero.getValorCelda(i,j) != 'V') {valido = false;}}
+               
+             }
+           
+           }
+         
+         Tablero tableroFinal = new Tablero(unTablero);
+         
+         if (valido) 
+           {
+             for (int i = 0 ; i < 8 ; i++)
+              {
+                for (int j = 0 ; j < 10 ; j++)
+                  {
+                    if (forma.equals("V") && j == columna &&  i >= fila && i <= fila + largo)
+                     {tableroFinal.moverFichaIndividual(i, j, mueveFilas, mueveCols, pasos); }
+                    
+                    if (forma.equals("H") && i == fila &&  j >= columna && j <= columna + largo)
+                     {tableroFinal.moverFichaIndividual(i, j, mueveFilas, mueveCols, pasos); }
+                  
+                  }
+              }
+           
+           }
+         
+       
+     Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento grupal", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + "Forma: " + forma + "Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
+     nuevoTesteo.setCometario(Testeo.agregaComentario());
+     unSistema.agregarTesteo(nuevoTesteo);
+     unSistema.setUltimoTablero(tableroFinal);
+         
+         
        
       return valido;
        }
