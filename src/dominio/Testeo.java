@@ -488,13 +488,13 @@ public class Testeo {
               {
                 int auxFila = fila + i;
                              
-                 if (unTablero.getValorCelda(auxFila, columna) != color.charAt(0)){validaGrupo = false; largoMaxColor = i;}
+                if (unTablero.getValorCelda(auxFila, columna) != color.charAt(0)){validaGrupo = false; largoMaxColor = i;}
                       
               }
              
              if (forma.equalsIgnoreCase("H"))
               {
-                int auxCol = columna + 1;
+                int auxCol = columna + i;
                 
                 if (unTablero.getValorCelda(fila, auxCol) != color.charAt(0)){validaGrupo = false; largoMaxColor = i;}
               
