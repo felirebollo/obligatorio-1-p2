@@ -380,7 +380,11 @@ public static void consultaDeTesters (Sistema unSistema)
                   
           }
 
-        // Muestra estadisticas de los testeos realizados
+      
+ }
+
+
+         // Muestra estadisticas de los testeos realizados
        public static void estadisticas(Sistema unSistema) {
        
           int mayorCantidad = 0;
@@ -439,10 +443,6 @@ public static void consultaDeTesters (Sistema unSistema)
     
  
  
- }
-
-
-
 
 
 
