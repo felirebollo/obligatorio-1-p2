@@ -239,7 +239,7 @@ public static void registrarTesteo (Sistema unSistema){
                System.out.println("Ingrese el valor a buscar (B, N o V):" + "\n");
                String aux = in.nextLine().toUpperCase();
                
-               while ((aux.equals("B") && aux.equals("N") && aux.equals("V")) || (aux.length() != 1))
+               while ((!aux.equals("B") && !aux.equals("N") && !aux.equals("V")) || (aux.length() != 1))
                {
                System.out.println("Debe ingresar los valores B, N o V:" + "\n");
                aux = in.nextLine().toUpperCase();
