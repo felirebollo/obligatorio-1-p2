@@ -587,10 +587,10 @@ public class Testeo {
               {
                 for (int j = 0 ; j < 10 ; j++)
                   {
-                    if (forma.equals("V") && j == columna &&  i >= fila && i <= fila + largo)
+                    if (forma.equals("V") && j == columna &&  i >= fila && i < fila + largo)
                      {tableroFinal.moverFichaIndividual(i, j, mueveFilas, mueveCols, pasos); }
                     
-                    if (forma.equals("H") && i == fila &&  j >= columna && j <= columna + largo)
+                    if (forma.equals("H") && i == fila &&  j >= columna && j < columna + largo)
                      {tableroFinal.moverFichaIndividual(i, j, mueveFilas, mueveCols, pasos); }
                   
                   }
