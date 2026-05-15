@@ -215,7 +215,7 @@ public static void registrarTesteo (Sistema unSistema){
       //Se valida el numero
       while(numeroTester < 0 || numeroTester >= unSistema.getListaTester().size()) {
          System.out.println("Numero invalido. Reingrese:" + "\n");
-         numeroTester = in.nextInt();  
+         numeroTester = in.nextInt() - 1;  
       }
 
       Tester testerElegido = unSistema.getListaTester().get(numeroTester);
