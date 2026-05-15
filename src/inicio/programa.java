@@ -35,7 +35,7 @@ public static void main(String[] args) {
          case 'b': registrarTablero(unSistema);break;
          case 'c': registrarTesteo(unSistema);break;
          case 'd': consultaDeTesters (unSistema);break;
-         case 'e':
+         case 'e': estadisticas(unSistema);break;
       } 
       
    }while (opcion != 'f');
@@ -269,7 +269,28 @@ public static void registrarTesteo (Sistema unSistema){
                 System.out.println(unSistema.getUltimoTablero().toString());
                 System.out.println(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido));
                 System.out.println(unSistema.getUltimoTablero().toString());break;
+                       
             case 4:
+                 // Se muestra el tablero actual
+                 System.out.println("Tablero actual:");
+                 System.out.println(unSistema.getUltimoTablero().toString());
+              
+                 // Se guarda el testeo realizado
+                 Testeo testeoTablero = new Testeo(
+                 unSistema.obtenerProximoNumeroTesteo(),
+                 testerElegido,
+                 "Preparar tablero",
+                  "Tablero mostrado",
+                  unSistema.getUltimoTablero(),
+                  unSistema.getUltimoTablero(),
+                  "Sin parametros"
+                 );
+              
+                 testeoTablero.setCometario(Testeo.agregaComentario());
+                 unSistema.agregarTesteo(testeoTablero);
+              
+                 System.out.println("Testeo agregado exitosamente." + "\n");
+                 break;
             case 5:
          }
       } while (numero != 6);
@@ -359,7 +380,61 @@ public static void consultaDeTesters (Sistema unSistema)
                   
           }
 
-     
+        // Muestra estadisticas de los testeos realizados
+       public static void estadisticas(Sistema unSistema) {
+       
+          int mayorCantidad = 0;
+       
+          // Busca la mayor cantidad de testeos realizados por un tester
+          for (int i = 0; i < unSistema.getListaTester().size(); i++) {
+             Tester tester = unSistema.getListaTester().get(i);
+             int cantidad = 0;
+       
+             for (int j = 0; j < unSistema.getListaTesteos().size(); j++) {
+                if (unSistema.getListaTesteos().get(j).getTester().getNombre().equalsIgnoreCase(tester.getNombre())) {
+                   cantidad = cantidad + 1;
+                }
+             }
+       
+             if (cantidad > mayorCantidad) {
+                mayorCantidad = cantidad;
+             }
+          }
+       
+          // Muestra los testers con mayor cantidad de testeos
+          System.out.println("Tester/s con mayor cantidad de testeos:");
+          for (int i = 0; i < unSistema.getListaTester().size(); i++) {
+             Tester tester = unSistema.getListaTester().get(i);
+             int cantidad = 0;
+       
+             for (int j = 0; j < unSistema.getListaTesteos().size(); j++) {
+                if (unSistema.getListaTesteos().get(j).getTester().getNombre().equalsIgnoreCase(tester.getNombre())) {
+                   cantidad = cantidad + 1;
+                }
+             }
+       
+             if (cantidad == mayorCantidad && mayorCantidad > 0) {
+                System.out.println(tester + " - Testeos: " + cantidad);
+             }
+          }
+       
+          // Muestra los testers que no realizaron testeos
+          System.out.println("Tester/s sin testeos:");
+          for (int i = 0; i < unSistema.getListaTester().size(); i++) {
+             Tester tester = unSistema.getListaTester().get(i);
+             int cantidad = 0;
+       
+             for (int j = 0; j < unSistema.getListaTesteos().size(); j++) {
+                if (unSistema.getListaTesteos().get(j).getTester().getNombre().equalsIgnoreCase(tester.getNombre())) {
+                   cantidad = cantidad + 1;
+                }
+             }
+       
+             if (cantidad == 0) {
+                System.out.println(tester);
+             }
+          }
+       }
      
     
  
