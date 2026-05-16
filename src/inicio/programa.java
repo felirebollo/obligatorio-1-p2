@@ -292,6 +292,40 @@ public static void registrarTesteo (Sistema unSistema){
                  System.out.println("Testeo agregado exitosamente." + "\n");
                  break;
             case 5:
+                  // Se solicita el color a verificar
+                 System.out.println("Ingrese el color a verificar (B/N):");
+                 String colorConexion = in.nextLine().toUpperCase();
+              
+                 // Valida ingreso
+                 while (!colorConexion.equals("B") && !colorConexion.equals("N")) {
+                    System.out.println("Debe ingresar B o N:");
+                    colorConexion = in.nextLine().toUpperCase();
+                 }
+              
+                 char color = colorConexion.charAt(0);
+              
+                 // Se verifica la conexion
+                 boolean conectado = Testeo.verificarConexion(unSistema, color);
+              
+                 // Se muestra resultado
+                 System.out.println("Resultado conexion: " + conectado);
+              
+                 // Se guarda el testeo
+                 Testeo nuevoTesteoConexion = new Testeo(
+                    unSistema.obtenerProximoNumeroTesteo(),
+                    testerElegido,
+                    "Verificar conexion",
+                    "Resultado: " + conectado,
+                    unSistema.getUltimoTablero(),
+                    unSistema.getUltimoTablero(),
+                    "Parametro: " + color
+                 );
+
+                 nuevoTesteoConexion.setCometario(Testeo.agregaComentario());
+
+                 unSistema.agregarTesteo(nuevoTesteoConexion);
+
+                 break;
          }
       } while (numero != 6);
    }
