@@ -608,7 +608,80 @@ public class Testeo {
        
       return valido;
        }
+
+     // Verifica si todas las fichas de un color estan conectadas
+    public static boolean verificarConexion(Sistema unSistema, char color) {
+    boolean conectado = false;
+
+    Tablero unTablero = new Tablero(unSistema.getUltimoTablero());
+
+    int cantidadTotal = contarFichas(unTablero, color, unSistema);
+
+    if (cantidadTotal > 0) {
+        boolean[][] visitadas = new boolean[8][10];
+
+        int filaInicio = -1;
+        int columnaInicio = -1;
+
+        // Busca la primera ficha del color indicado
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (filaInicio == -1 && unTablero.getValorCelda(i, j) == color) {
+                    filaInicio = i;
+                    columnaInicio = j;
+                }
+            }
+        }
+
+        int cantidadConectada = recorrerConexion(unTablero, color, visitadas, filaInicio, columnaInicio);
+
+        if (cantidadConectada == cantidadTotal) {
+            conectado = true;
+        }
     }
+
+    return conectado;
+    }
+
+    // Recorre las fichas conectadas del mismo color
+    public static int recorrerConexion(Tablero unTablero, char color, boolean[][] visitadas, int fila, int columna) {
+
+    int cantidad = 0;
+
+    // Valida limites del tablero
+    if (fila >= 0 && fila < 8 && columna >= 0 && columna < 10) {
+
+        // Valida que no este visitada y que sea del color buscado
+        if (!visitadas[fila][columna] && unTablero.getValorCelda(fila, columna) == color) {
+
+            visitadas[fila][columna] = true;
+
+            cantidad = 1;
+
+            // Arriba
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila - 1, columna);
+
+            // Abajo
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila + 1, columna);
+
+            // Izquierda
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila, columna - 1);
+
+            // derecha
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila, columna + 1);
+
+            // Diagonales
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila - 1, columna - 1);
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila - 1, columna + 1);
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila + 1, columna - 1);
+            cantidad = cantidad + recorrerConexion(unTablero, color, visitadas, fila + 1, columna + 1);
+        }
+    }
+
+    return cantidad;
+}
+    
+}
     
        
 
