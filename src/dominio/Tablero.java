@@ -1,4 +1,8 @@
+// Autores: Felipe Rebollo Nro - Martin Arismendi Nro: 353787
+
+
 package dominio;
+
 
 public class Tablero
 { 
@@ -9,10 +13,10 @@ public class Tablero
    {
     tablero =  new char [][] {{'V','V','N','N','V','V','N','N','V','V'},
                               {'N','N','N','N','N','N','N','N','N','N'},
-                              {'V','V','N','V','V','N','N','V','V','N'},
+                              {'V','N','N','V','V','N','N','V','V','N'},
                               {'V','V','V','V','V','V','V','V','V','V'},
                               {'V','V','V','V','V','V','V','V','V','V'},
-                              {'B','B','B','V','V','B','B','V','V','B'},
+                              {'V','B','B','V','V','B','B','V','V','B'},
                               {'B','B','B','B','B','B','B','B','B','B'},
                               {'V','V','B','B','V','V','B','B','V','V'}};
    }

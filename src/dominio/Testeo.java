@@ -1,3 +1,4 @@
+// Autores: Felipe Rebollo Nro - Martin Arismendi Nro: 353787
 
 package dominio;
 import java.util.Scanner;
@@ -102,6 +103,7 @@ public class Testeo {
         String comentario = "";
         Scanner in = new Scanner(System.in);
        
+        System.out.println("");
         System.out.println("Desde agregar un comentario? (Si / No)" );
         String respuesta = in.nextLine();
        
@@ -403,6 +405,7 @@ public class Testeo {
 
         {
                try {
+                 System.out.println("");
                  System.out.println("Ingrese fila de la ficha a mover (0-7) " + "\n");
                  fila = in.nextInt();
                  in.nextLine();
@@ -501,7 +504,8 @@ public class Testeo {
               }
           }
             if (validaGrupo)
-              { 
+              {   
+                  System.out.println("");
                   System.out.println ("El grupo ingresado es valido");
               }
                     
@@ -542,6 +546,7 @@ public class Testeo {
         {   
             
                try {
+                 System.out.println("");
                  System.out.println("Ingrese el numero de pasos. Pasos maximos dentro del rango del tablero: " + pasosMaximo + "\n");
                  pasos = in.nextInt();
                  in.nextLine();

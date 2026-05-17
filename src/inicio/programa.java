@@ -1,3 +1,4 @@
+// Autores: Felipe Rebollo Nro - Martin Arismendi Nro: 353787
 
 package inicio;
 import java.util.*;
@@ -12,13 +13,14 @@ public static void main(String[] args) {
 
    Sistema unSistema = new Sistema();
    Tablero unTablero = new Tablero();
-      
+    
+    System.out.println("Autores: Felipe Rebollo Nro - Martin Arismendi Nro: 353787" + "\n");
       
    System.out.println("Inicio del obligatorio" + "\n");
    char opcion ;
       
    do {   
-   
+      System.out.println("");
       System.out.println("Eliga una de las siguientes opciones:" + "\n");
       System.out.println("a) Registrar tester");
       System.out.println("b) Registar tablero");
@@ -209,6 +211,7 @@ public static void registrarTesteo (Sistema unSistema){
       }
 
       //Se pide el numero del tester
+       System.out.println("");
       System.out.println("Ingrese el numero del tester:" + "\n");
       int numeroTester = in.nextInt() - 1 ;
 
@@ -255,19 +258,31 @@ public static void registrarTesteo (Sistema unSistema){
                Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero, "Parametro: " + letra );
                nuevoTesteo.setCometario(Testeo.agregaComentario());
                unSistema.agregarTesteo(nuevoTesteo);
-               
+               System.out.println("");
                System.out.println("Testeo agregado exitosamente." + "\n");
                break;   
                
-            case 2: System.out.println(unSistema.getUltimoTablero().toString());
-                if(Testeo.validarMovimientoIndividual(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido");}
-                      else {System.out.println("Su movimiento no es valido");} 
+            case 2: 
+                System.out.println("");
+                System.out.println("La matriz de inicio es la siguiente: " + "\n");
+                System.out.println(unSistema.getUltimoTablero().toString());
+                System.out.println("");
+                if(Testeo.validarMovimientoIndividual(unSistema, unTablero, testerElegido))
+                     {   System.out.println("");
+                         System.out.println("Su movimiento es valido" + "\n");}
+                      else {System.out.println("");
+                            System.out.println("Su movimiento no es valido" + "\n");} 
+                System.out.println("La matriz final es la siguiente: " + "\n");
                 System.out.println(unSistema.getUltimoTablero().toString());
             ;break;
                       
             case 3: 
+                System.out.println("");
+                System.out.println("La matriz de inicio es la siguiente: " + "\n");
                 System.out.println(unSistema.getUltimoTablero().toString());
-                System.out.println(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido));
+                if(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido. " +"\n");} 
+                else {System.out.println("Su movimiento no es valido." + "\n");}
+                System.out.println("La matriz final es la siguiente: " + "\n");
                 System.out.println(unSistema.getUltimoTablero().toString());break;
                        
             case 4:
@@ -308,14 +323,15 @@ public static void registrarTesteo (Sistema unSistema){
                  boolean conectado = Testeo.verificarConexion(unSistema, color);
               
                  // Se muestra resultado
-                 System.out.println("Resultado conexion: " + conectado);
+                 if (conectado){System.out.println("El color " + color + " esta conectado");} 
+                 else {System.out.println("El color " + color + " no esta conectado");}
               
                  // Se guarda el testeo
                  Testeo nuevoTesteoConexion = new Testeo(
                     unSistema.obtenerProximoNumeroTesteo(),
                     testerElegido,
                     "Verificar conexion",
-                    "Resultado: " + conectado,
+                    ""+ conectado,
                     unSistema.getUltimoTablero(),
                     unSistema.getUltimoTablero(),
                     "Parametro: " + color
@@ -423,6 +439,8 @@ public static void consultaDeTesters (Sistema unSistema)
        
           int mayorCantidad = 0;
        
+      if (unSistema.getListaTester().size() >0)
+      {
           // Busca la mayor cantidad de testeos realizados por un tester
           for (int i = 0; i < unSistema.getListaTester().size(); i++) {
              Tester tester = unSistema.getListaTester().get(i);
@@ -440,7 +458,9 @@ public static void consultaDeTesters (Sistema unSistema)
           }
        
           // Muestra los testers con mayor cantidad de testeos
-          System.out.println("Tester/s con mayor cantidad de testeos:");
+          
+          if (mayorCantidad > 0){
+          System.out.println("Tester/s con mayor cantidad de testeos:" + "\n");
           for (int i = 0; i < unSistema.getListaTester().size(); i++) {
              Tester tester = unSistema.getListaTester().get(i);
              int cantidad = 0;
@@ -451,12 +471,14 @@ public static void consultaDeTesters (Sistema unSistema)
                 }
              }
        
-             if (cantidad == mayorCantidad && mayorCantidad > 0) {
+             if (cantidad == mayorCantidad) {
                 System.out.println(tester + " - Testeos: " + cantidad);
              }
-          }
+          }} else {System.out.println("No se registraron testeos" + "\n");}
        
           // Muestra los testers que no realizaron testeos
+          boolean noHay = false;
+          System.out.println("");
           System.out.println("Tester/s sin testeos:");
           for (int i = 0; i < unSistema.getListaTester().size(); i++) {
              Tester tester = unSistema.getListaTester().get(i);
@@ -471,7 +493,10 @@ public static void consultaDeTesters (Sistema unSistema)
              if (cantidad == 0) {
                 System.out.println(tester);
              }
-          }
+          } if (noHay){
+              System.out.println("");
+              System.out.println("No hay registros de testers sin testeos");}
+        } else {System.out.println("No hay testers registrados " + "\n");}
        }
      
     
