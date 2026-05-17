@@ -29,7 +29,14 @@ public static void main(String[] args) {
       System.out.println("e) Estadisticas");
       System.out.println("f) Terminar programa" + "\n");
                
-      opcion = Character.toLowerCase(in.nextLine().charAt(0));
+      String texto = in.nextLine();
+
+      while (texto.length() == 0) {
+             System.out.println("Debe ingresar una opcion:");
+             texto = in.nextLine();
+      }
+
+      opcion = Character.toLowerCase(texto.charAt(0));
           
       switch (opcion){
              
@@ -99,7 +106,7 @@ public static void registrarTester (Sistema unSistema){
          if (experiencia >= 0 && experiencia < edad) {
             valido2 = true; 
         } else {
-            System.out.println("La experiencia debe ser positiva y mayor a la edad. Reingrese:" + "\n");
+            System.out.println("La experiencia debe ser positiva y menor a la edad. Reingrese:" + "\n");
         }
 
     } catch (Exception e) {
@@ -352,7 +359,14 @@ public static void registrarTesteo (Sistema unSistema){
 
 public static void consultaDeTesters (Sistema unSistema)
  {  
-     Scanner in = new Scanner (System.in);
+    Scanner in = new Scanner (System.in);
+
+   if (unSistema.getListaTester().size() == 0)
+   {
+      System.out.println("No hay testers registrados.");
+   }
+   else
+   {
      
      // Ordena alfabeticamente el arrayLista
      Collections.sort
@@ -376,7 +390,12 @@ public static void consultaDeTesters (Sistema unSistema)
      
      System.out.println("Ingrese el numero del tester a consultar: " + "\n");
      int indice  = in.nextInt() -1;
-     in.nextLine();
+     while (indice < 0 || indice >= unSistema.getListaTester().size()) {
+            System.out.println("Numero invalido. Reingrese:");
+            indice = in.nextInt() - 1;
+           in.nextLine();
+     }
+     
      
      // Del indice ingresado obtenemos el nombre del tester
      String nombre = unSistema.getListaTester().get(indice).getNombre();
@@ -392,23 +411,51 @@ public static void consultaDeTesters (Sistema unSistema)
            
            }
        }
-     
-     System.out.println("Los testeos realizados por el tester elegido son:" + "\n");
+
+          if (auxListaTesteos.size() == 0)
+       {
+          System.out.println("El tester no tiene testeos registrados.");
+       }
+       else {
+            System.out.println("Los testeos realizados por el tester elegido son:" + "\n");
        
      for (int i = 0 ; i < auxListaTesteos.size(); i++)
     {
        System.out.println("Testeo Nro " + auxListaTesteos.get(i).getNumero() + " - " + auxListaTesteos.get(i).getTipo() + "\n");
     }           
-     
-     System.out.println("Ingrese el numero de test a consultar (Numero entero):"+ "\n");
-     int consulta = in.nextInt();
-     in.nextLine();
-     int indice2 = 0;
-     
-     for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
+            
+       System.out.println("Ingrese el numero de test a consultar (Numero entero):"+ "\n");
+       int consulta = in.nextInt();
+       in.nextLine();
+       
+       int indice2 = 0;
+       boolean existe = false;
+       
+       for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
        {
-        if (unSistema.getListaTesteos().get(i).getNumero() == consulta){indice2 = i;}
-       } 
+          if (unSistema.getListaTesteos().get(i).getNumero() == consulta && unSistema.getListaTesteos().get(i).getTester().getNombre().equals(nombre))
+          {
+             indice2 = i;
+             existe = true;
+          }
+       }
+       
+       while (!existe) {
+       
+          System.out.println("El testeo no pertenece al tester o no existe.");
+       
+          consulta = in.nextInt();
+          in.nextLine();
+       
+          for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
+          {
+             if (unSistema.getListaTesteos().get(i).getNumero() == consulta && unSistema.getListaTesteos().get(i).getTester().getNombre().equals(nombre))
+             {
+                indice2 = i;
+                existe = true;
+             }
+          }
+       }
      
      System.out.println("Los datos del testeo son los siguiente:" + "\n");
      System.out.println(unSistema.getListaTesteos().get(indice2).toString());
@@ -430,9 +477,10 @@ public static void consultaDeTesters (Sistema unSistema)
                   
           }
 
-      
- }
-
+       }
+        }
+       }
+}
 
          // Muestra estadisticas de los testeos realizados
        public static void estadisticas(Sistema unSistema) {
@@ -477,7 +525,7 @@ public static void consultaDeTesters (Sistema unSistema)
           }} else {System.out.println("No se registraron testeos" + "\n");}
        
           // Muestra los testers que no realizaron testeos
-          boolean noHay = false;
+          boolean noHay = true;
           System.out.println("");
           System.out.println("Tester/s sin testeos:");
           for (int i = 0; i < unSistema.getListaTester().size(); i++) {
@@ -492,6 +540,7 @@ public static void consultaDeTesters (Sistema unSistema)
        
              if (cantidad == 0) {
                 System.out.println(tester);
+                noHay = false;
              }
           } if (noHay){
               System.out.println("");
