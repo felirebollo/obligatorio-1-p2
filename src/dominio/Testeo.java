@@ -98,10 +98,9 @@ public class Testeo {
     
     // Agregar comentario
     
-    public static String agregaComentario ()
+    public static String agregaComentario(System.in)
     {   
         String comentario = "";
-        Scanner in = new Scanner(System.in);
        
         System.out.println("");
         System.out.println("Desde agregar un comentario? (Si / No)" );
@@ -294,7 +293,7 @@ public class Testeo {
     
       
      Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
-     nuevoTesteo.setCometario(Testeo.agregaComentario());
+     nuevoTesteo.setCometario(Testeo.agregaComentario(in));
      unSistema.agregarTesteo(nuevoTesteo);
      unSistema.setUltimoTablero(tableroFinal);
 
@@ -605,7 +604,7 @@ public class Testeo {
          
        
      Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento grupal", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + "Forma: " + forma + "Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
-     nuevoTesteo.setCometario(Testeo.agregaComentario());
+     nuevoTesteo.setCometario(Testeo.agregaComentario(in));
      unSistema.agregarTesteo(nuevoTesteo);
      unSistema.setUltimoTablero(tableroFinal);
          
