@@ -1,4 +1,4 @@
-// Autores: Felipe Rebollo Nro - Martin Arismendi Nro: 353787
+// Autores: Felipe Rebollo Nro 366552 - Martin Arismendi Nro: 353787
 
 package dominio;
 
