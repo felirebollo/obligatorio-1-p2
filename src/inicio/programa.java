@@ -14,7 +14,7 @@ public static void main(String[] args) {
    Sistema unSistema = new Sistema();
    Tablero unTablero = new Tablero();
     
-    System.out.println("Autores: Felipe Rebollo Nro - Martin Arismendi Nro: 353787" + "\n");
+    System.out.println("Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787" + "\n");
       
    System.out.println("Inicio del obligatorio" + "\n");
    char opcion ;
