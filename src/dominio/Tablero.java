@@ -13,10 +13,10 @@ public class Tablero
    {
     tablero =  new char [][] {{'V','V','N','N','V','V','N','N','V','V'},
                               {'N','N','N','N','N','N','N','N','N','N'},
-                              {'V','N','N','V','V','N','N','V','V','N'},
+                              {'N','N','V','V','N','N','V','V','N','N'},
                               {'V','V','V','V','V','V','V','V','V','V'},
                               {'V','V','V','V','V','V','V','V','V','V'},
-                              {'V','B','B','V','V','B','B','V','V','B'},
+                              {'B','B','V','V','B','B','V','V','B','B'},
                               {'B','B','B','B','B','B','B','B','B','B'},
                               {'V','V','B','B','V','V','B','B','V','V'}};
    }
@@ -36,18 +36,35 @@ public class Tablero
 }
   
   @Override
-  public String toString () {
+  public String toString() {
+
     String salida = "";
 
+    String linea = "+---+---+---+---+---+---+---+---+---+---+\n";
+
     for (int i = 0; i < tablero.length; i++) {
+
+        salida += linea;
+
         for (int j = 0; j < tablero[i].length; j++) {
-            salida += tablero[i][j] + " ";
+
+            char valor = getValorCelda(i, j);
+
+            if (valor == 'V') {
+                salida += "|   ";
+            } else {
+                salida += "| " + valor + " ";
+            }
         }
-        salida += "\n";
+
+        salida += "|\n";
     }
+
+    salida += linea;
 
     return salida;
 }
+
   
   
   public void setTablero (String nuevaLinea, int numeroLinea) 
