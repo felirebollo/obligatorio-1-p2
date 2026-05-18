@@ -110,7 +110,7 @@ public static void registrarTester (Sistema unSistema){
          if (experiencia >= 0 && experiencia < edad) {
             valido2 = true; 
         } else {
-            System.out.println("La experiencia debe ser positiva y menor a la edad. Reingrese:" + "\n");
+            System.out.println("La experiencia debe ser cero o positiva y menor a la edad. Reingrese:" + "\n");
         }
 
     } catch (Exception e) {
