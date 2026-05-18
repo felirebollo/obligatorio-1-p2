@@ -262,7 +262,7 @@ public static void registrarTesteo (Sistema unSistema){
                char letra = aux.charAt(0);
                
                // Se calcula el resultado y se muestra
-               int cantidad = Testeo.contarFichas(unTablero, letra, unSistema);
+               int cantidad = Testeo.contarFichas(letra, unSistema);
                System.out.println("El valor buscado se encuentra en " + cantidad + " celdas" + "\n");
                              
                // Se crea el testeo y se guarda en el sistema
