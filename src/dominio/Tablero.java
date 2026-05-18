@@ -89,7 +89,9 @@ public boolean mismoTablero (Tablero unTablero)
    {
     for (int j = 0 ; j < 10 && sonIguales; j ++)
      {
-       if (this.getValorCelda (i,j) != unTablero.getValorCelda(i, j)){sonIguales = false;}
+       if (this.getValorCelda (i,j) != unTablero.getValorCelda(i, j)){
+         sonIguales = false;
+       }
      
      }
    
@@ -103,8 +105,16 @@ public void moverFichaIndividual (int filaOrigen, int colOrigen, int movFilas , 
    int filaDest = 0;
    int colDest = 0;
      
-   if (movFilas == 0){filaDest = filaOrigen;} else {filaDest = filaOrigen + movFilas * pasos;}
-   if (movCols == 0){colDest = colOrigen;} else {colDest = colOrigen + movCols * pasos;}
+   if (movFilas == 0){
+     filaDest = filaOrigen;
+   } else {
+     filaDest = filaOrigen + movFilas * pasos;
+   }
+   if (movCols == 0){
+     colDest = colOrigen;
+   } else {
+     colDest = colOrigen + movCols * pasos;
+        }
    
    tablero [filaDest][colDest] = tablero [filaOrigen][colOrigen];
    
