@@ -85,6 +85,7 @@ public static void registrarTester (Sistema unSistema){
      try {
         System.out.println("Ingrese la edad del nuevo tester:"+ "\n");
         edad = in.nextInt();
+        in.nextLine();
 
          if (edad > 0) {
             valido1 = true; 
@@ -267,7 +268,7 @@ public static void registrarTesteo (Sistema unSistema){
                System.out.println("El valor buscado se encuentra en " + cantidad + " celdas" + "\n");
                              
                // Se crea el testeo y se guarda en el sistema
-               Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero, "Parametro: " + letra );
+              Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad, unSistema.getUltimoTablero(), unSistema.getUltimoTablero(), "Parametro: " + letra);
                nuevoTesteo.setComentario(Testeo.agregaComentario());
                unSistema.agregarTesteo(nuevoTesteo);
                System.out.println("");
