@@ -94,11 +94,11 @@ public class Testeo {
         return "Testeo Nro: " + this.getNumero() + " -  Tipo de testeo: " + this.getTipo() + " - Tester: " + this.getTester().getNombre() + " - Resultado: " + this.getResultado() +" - "+ this.getParametro() + " - Comentario: " + this.getComentario() ;
     }
     
-    public static int contarFichas (Tablero unTablero, char letra, Sistema unSistema){  
+    public static int contarFichas (char letra, Sistema unSistema){  
        
         int contador = 0 ;
         
-        unTablero = new Tablero (unSistema.getUltimoTablero());
+        Tablero unTablero = new Tablero(unSistema.getUltimoTablero());
         
         System.out.println(unTablero.toString());
         for (int i = 0 ; i < 8 ; i++) {
