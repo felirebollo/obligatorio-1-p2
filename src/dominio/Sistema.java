@@ -4,16 +4,12 @@ package dominio;
 
 import java.util.ArrayList;
 
-// ULTIMO PUSH 03/05 A LAS 15:13
-// ULTIMO PUSH 3/05 A LAS 17:52
-// ULTIMO Push 04/05 A LAS 20:27
-// ULTIMO Push 05/05 A LAS 09:25
-// ULTIMO Push 05/05 A LAS 11:32
 public class Sistema {
 
     private ArrayList<Tester> listaTesters = new ArrayList<>();
     private ArrayList<Testeo> listaTesteos = new ArrayList<>();
     private Tablero ultimoTablero = new Tablero();
+    private int proximoNumeroTesteo = 1; // Guarda el proximo numero de testeo
 
     public void setUltimoTablero(Tablero unTablero) {
         ultimoTablero = unTablero;
@@ -22,9 +18,6 @@ public class Sistema {
     public Tablero getUltimoTablero() {
         return ultimoTablero;
     }
-
-    // Guarda el proximo numero de testeo
-    private int proximoNumeroTesteo = 1;
 
     public void agregarTester(Tester nuevoTester) {
         listaTesters.add(nuevoTester);
@@ -56,8 +49,7 @@ public class Sistema {
     // Retorna la lista de testeos realizados
     public ArrayList<Testeo> getListaTesteos() {
         return listaTesteos;
-    }
-
+    }   
     // Devuelve el proximo numero de testeo y lo incrementa
     public int obtenerProximoNumeroTesteo() {
         int numero = proximoNumeroTesteo;
@@ -76,19 +68,5 @@ public class Sistema {
         return existe;
     }
 
-    /* 
-     VER PARA BORRRAR
-     public Tablero getUltimoTablero ()
-     {
-       Tablero salida = new Tablero ();
-       int ultimo = this.getListaTesteos().size();
-       
-       if (ultimo > 0)
-       {
-         salida = this.getListaTesteos().get(ultimo-1).getTableroFinal();
-       } 
-       
-        return salida;
-     }
-     */
+    
 }

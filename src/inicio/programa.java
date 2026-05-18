@@ -235,7 +235,7 @@ public static void registrarTesteo (Sistema unSistema){
          System.out.println("2) Validar movimiento individual");
          System.out.println("3) Validar movimiento en grupo");
          System.out.println("4) Preparar tablero");
-         System.out.println("5) Verifiar conexion");
+         System.out.println("5) Verificar conexion");
          System.out.println("6) Volver al menu anterior" + "\n");
          System.out.println("Ingrese el numero de testeo a realizar:" + "\n");
          

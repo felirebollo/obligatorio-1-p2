@@ -19,10 +19,10 @@ public class Tester {
       this.setExperiencia(0);
   }
 
-  
   public String getNombre() {
       return nombre;
   }
+
   public void setNombre(String unNombre){
       nombre = unNombre;
   }
@@ -30,6 +30,7 @@ public class Tester {
   public int getEdad(){
       return edad;
   }
+
   public void setEdad(int unaEdad){
       edad = unaEdad;
   }
@@ -37,10 +38,10 @@ public class Tester {
   public int getExperiencia(){
       return experiencia;
   }
+
   public void setExperiencia(int unaExperiencia){
       experiencia = unaExperiencia;
   }
-
 
   @Override
   public String toString() {

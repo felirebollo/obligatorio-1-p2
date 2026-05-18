@@ -34,8 +34,8 @@ public class Tablero
     }
 }
   
-  @Override
-  public String toString() {
+@Override
+public String toString() {
 
     String salida = "";
 
@@ -64,9 +64,7 @@ public class Tablero
     return salida;
 }
 
-  
-  
-  public void setTablero (String nuevaLinea, int numeroLinea) 
+public void setTablero (String nuevaLinea, int numeroLinea) 
   { 
     /*El metodo aca quedo para que se solicite en Programa para cada linea, 
      no se si es lo mejor o directamente poner como parametro una matriz nueva
@@ -79,13 +77,12 @@ public class Tablero
   
   }
 
-  public char getValorCelda (int fila, int columna)
+public char getValorCelda (int fila, int columna)
     {
       return tablero[fila][columna];
     }
   
-  
-  public boolean mismoTablero (Tablero unTablero)
+public boolean mismoTablero (Tablero unTablero)
 {
  boolean sonIguales = true;
  
@@ -101,8 +98,6 @@ public class Tablero
  return sonIguales;
 
   }
-
-
 
 public void moverFichaIndividual (int filaOrigen, int colOrigen, int movFilas , int movCols, int pasos)
  { 

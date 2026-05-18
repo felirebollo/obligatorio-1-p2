@@ -24,60 +24,76 @@ public class Testeo {
         this.setParametro(parametro);
     }
 
+    
     public int getNumero() {
         return numero;
     }
+    
     public void setNumero(int unNumero) {
         numero = unNumero;
     }
+    
     public Tester getTester() {
         return tester;
     }
+    
     public void setTester(Tester unTester) {
         tester = unTester;
     }
+    
     public String getTipo() {
         return tipo;
     }
+    
     public void setTipo(String unTipo) {
         tipo = unTipo;
     }
+    
     public String getResultado() {
         return resultado;
     }
+    
     public void setResultado(String unResultado) {
         resultado = unResultado;
     }
+    
     public Tablero getTableroInicial () {
       return tableroInicial;
     }
+    
     public Tablero getTableroFinal() {
      return tableroFinal;
     }
+    
     public String getComentario () {
      return comentario;
     }
+    
     public void setCometario (String unComentario){
       comentario = unComentario;
     }
+    
     public void setTableroInicial (Tablero unTablero){
       tableroInicial = unTablero;
     }
+    
     public void setTableroFinal (Tablero unTablero){
       tableroFinal = unTablero;
     }
+    
     public void setParametro (String unParametro){
     parametro = unParametro;
    }
+    
     public String getParametro (){
     return parametro;
    }
-     @Override
+    
+    @Override
     public String toString() {
         return "Testeo Nro: " + this.getNumero() + " -  Tipo de testeo: " + this.getTipo() + " - Tester: " + this.getTester().getNombre() + " - Resultado: " + this.getResultado() +" - "+ this.getParametro() + " - Comentario: " + this.getComentario() ;
     }
-
-    //Cuenta cuantas fichas hay de un tipo en el tablero
+    
     public static int contarFichas (Tablero unTablero, char letra, Sistema unSistema){  
        
         int contador = 0 ;
@@ -97,10 +113,7 @@ public class Testeo {
         return contador;
      }
     
-    // Agregar comentario
-    
-    public static String agregaComentario()
-    {   
+    public static String agregaComentario(){   
         Scanner in = new Scanner (System.in);
         String comentario = "";
        
@@ -126,7 +139,6 @@ public class Testeo {
          return comentario;
     
     }
- 
     
     public static boolean validarMovimientoIndividual(Sistema unSistema, Tablero unTablero, Tester testerElegido){
     
@@ -301,10 +313,8 @@ public class Testeo {
 
       return valido;
     }
- 
     
-    public static boolean validarMovimientoGrupal (Sistema unSistema, Tablero unTablero, Tester testerElegido)
-    {
+    public static boolean validarMovimientoGrupal (Sistema unSistema, Tablero unTablero, Tester testerElegido){
     
     // Defino variables 
         
@@ -614,8 +624,7 @@ public class Testeo {
        
       return valido;
        }
-
-     // Verifica si todas las fichas de un color estan conectadas
+  
     public static boolean verificarConexion(Sistema unSistema, char color) {
     boolean conectado = false;
 
