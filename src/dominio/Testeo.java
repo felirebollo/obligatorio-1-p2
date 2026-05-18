@@ -449,8 +449,9 @@ public class Testeo {
                  columna = in.nextInt();
                  in.nextLine();
 
-                 if ((0 <= columna) && ( columna <= 7)){validaColumna = true;} 
-                      else { System.out.println("Debe ingresar valores entre 0-9:"); }
+                 if ((0 <= columna) && ( columna <= 9)){
+                     validaColumna = true;
+                 } else { System.out.println("Debe ingresar valores entre 0-9:"); }
                       
                    }
 
@@ -552,7 +553,11 @@ public class Testeo {
                
            }
          
-         if (pasosMaximo == 0){puedeDarPasos = false; valido = false;}
+         if (pasosMaximo == 0){
+             puedeDarPasos = false; 
+             valido = false;
+             System.out.println("El grupo no puede desplazarse en ese sentido.");
+         }
          
          /*La logica del codigo es que controle el ingreso de parametros (color, sentido, fila, columna y largo)
            hasta la consitucion del grupo, una vez creado el grupo, si este no puede dar pasos directamente 
