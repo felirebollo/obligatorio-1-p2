@@ -1,5 +1,7 @@
 package dominio;
 
+// Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
+
 public class Tester {
   private String nombre;
   private int edad;

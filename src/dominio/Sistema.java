@@ -1,6 +1,6 @@
-// Autores: Felipe Rebollo Nro 366552 - Martin Arismendi Nro: 353787
-
 package dominio;
+
+// Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
 
 import java.util.ArrayList;
 

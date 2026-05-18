@@ -1,9 +1,8 @@
-// Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
-
 package inicio;
 import java.util.*;
 import dominio.*;
 
+// Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
 
 public class programa {
 
@@ -287,8 +286,11 @@ public static void registrarTesteo (Sistema unSistema){
                 System.out.println("");
                 System.out.println("La matriz de inicio es la siguiente: " + "\n");
                 System.out.println(unSistema.getUltimoTablero().toString());
-                if(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido)){System.out.println("Su movimiento es valido. " +"\n");} 
-                else {System.out.println("Su movimiento no es valido." + "\n");}
+                if(Testeo.validarMovimientoGrupal(unSistema, unTablero, testerElegido))
+                {System.out.println("");
+                 System.out.println("Su movimiento es valido. " +"\n");} 
+                else {System.out.println("");
+                    System.out.println("Su movimiento no es valido." + "\n");}
                 System.out.println("La matriz final es la siguiente: " + "\n");
                 System.out.println(unSistema.getUltimoTablero().toString());break;
                        
@@ -480,9 +482,8 @@ public static void consultaDeTesters (Sistema unSistema)
        }
         }
        }
-}
 
-         // Muestra estadisticas de los testeos realizados
+// Muestra estadisticas de los testeos realizados
        public static void estadisticas(Sistema unSistema) {
        
           int mayorCantidad = 0;
@@ -547,27 +548,8 @@ public static void consultaDeTesters (Sistema unSistema)
               System.out.println("No hay registros de testers sin testeos");}
         } else {System.out.println("No hay testers registrados " + "\n");}
        }
-     
-    
- 
- 
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 }
+
+         
+     
+

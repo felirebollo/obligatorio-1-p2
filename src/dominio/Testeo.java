@@ -1,6 +1,7 @@
+package dominio;
+
 // Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
 
-package dominio;
 import java.util.Scanner;
 
 public class Testeo {
@@ -98,8 +99,9 @@ public class Testeo {
     
     // Agregar comentario
     
-    public static String agregaComentario(System.in)
+    public static String agregaComentario()
     {   
+        Scanner in = new Scanner (System.in);
         String comentario = "";
        
         System.out.println("");
@@ -293,7 +295,7 @@ public class Testeo {
     
       
      Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento individual", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + " Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
-     nuevoTesteo.setCometario(Testeo.agregaComentario(in));
+     nuevoTesteo.setCometario(Testeo.agregaComentario());
      unSistema.agregarTesteo(nuevoTesteo);
      unSistema.setUltimoTablero(tableroFinal);
 
@@ -604,7 +606,7 @@ public class Testeo {
          
        
      Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Validar movimiento grupal", "Resultado: " + valido , unTablero , tableroFinal, "Parametros: (Color: " + color + " Sentido: " + sentido + "Forma: " + forma + "Fila: " + fila + " Columna: " + columna + " Pasos: " + pasos );
-     nuevoTesteo.setCometario(Testeo.agregaComentario(in));
+     nuevoTesteo.setCometario(Testeo.agregaComentario());
      unSistema.agregarTesteo(nuevoTesteo);
      unSistema.setUltimoTablero(tableroFinal);
          
