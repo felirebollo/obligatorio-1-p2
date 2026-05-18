@@ -268,7 +268,7 @@ public static void registrarTesteo (Sistema unSistema){
                              
                // Se crea el testeo y se guarda en el sistema
                Testeo nuevoTesteo = new Testeo(unSistema.obtenerProximoNumeroTesteo(), testerElegido, "Contar fichas", "" + cantidad , unTablero , unTablero, "Parametro: " + letra );
-               nuevoTesteo.setCometario(Testeo.agregaComentario());
+               nuevoTesteo.setComentario(Testeo.agregaComentario());
                unSistema.agregarTesteo(nuevoTesteo);
                System.out.println("");
                System.out.println("Testeo agregado exitosamente." + "\n");
@@ -316,7 +316,7 @@ public static void registrarTesteo (Sistema unSistema){
                   "Sin parametros"
                  );
               
-                 testeoTablero.setCometario(Testeo.agregaComentario());
+                 testeoTablero.setComentario(Testeo.agregaComentario());
                  unSistema.agregarTesteo(testeoTablero);
               
                  System.out.println("Testeo agregado exitosamente." + "\n");
@@ -352,7 +352,7 @@ public static void registrarTesteo (Sistema unSistema){
                     "Parametro: " + color
                  );
 
-                 nuevoTesteoConexion.setCometario(Testeo.agregaComentario());
+                 nuevoTesteoConexion.setComentario(Testeo.agregaComentario());
 
                  unSistema.agregarTesteo(nuevoTesteoConexion);
 
