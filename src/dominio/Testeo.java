@@ -257,9 +257,16 @@ public class Testeo {
               }
         }
     
-     String otroColor = "B";
-     
-     if (color.equals("B")){otroColor = "N";}
+     String otroColor = "";
+
+    if (color.equals("B"))
+    {
+       otroColor = "N";
+    }
+    else
+    {
+       otroColor = "B";
+    }
      
      int mueveFilas = 0;
      int mueveCols = 0;
@@ -630,7 +637,7 @@ public class Testeo {
 
     Tablero unTablero = new Tablero(unSistema.getUltimoTablero());
 
-    int cantidadTotal = contarFichas(unTablero, color, unSistema);
+    int cantidadTotal = int cantidadTotal = contarFichas(color, unSistema);
 
     if (cantidadTotal > 0) {
         boolean[][] visitadas = new boolean[8][10];
