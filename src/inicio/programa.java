@@ -396,12 +396,14 @@ public static void consultaDeTesters (Sistema unSistema)
      
      
      System.out.println("Ingrese el numero del tester a consultar: " + "\n");
-     int indice  = in.nextInt() -1;
-     while (indice < 0 || indice >= unSistema.getListaTester().size()) {
-            System.out.println("Numero invalido. Reingrese:");
-            indice = in.nextInt() - 1;
-           in.nextLine();
-     }
+       int indice = in.nextInt() - 1;
+       in.nextLine();
+
+       while (indice < 0 || indice >= unSistema.getListaTester().size()){
+          System.out.println("Numero invalido. Reingrese:");
+          indice = in.nextInt() - 1;
+          in.nextLine();
+       }
      
      
      // Del indice ingresado obtenemos el nombre del tester
@@ -453,7 +455,8 @@ public static void consultaDeTesters (Sistema unSistema)
        
           consulta = in.nextInt();
           in.nextLine();
-       
+
+          existe =  false;
           for (int i = 0 ; i < unSistema.getListaTesteos().size() ; i++)
           {
              if (unSistema.getListaTesteos().get(i).getNumero() == consulta && unSistema.getListaTesteos().get(i).getTester().getNombre().equals(nombre))
