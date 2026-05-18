@@ -69,7 +69,7 @@ public class Testeo {
      return comentario;
     }
     
-    public void setCometario (String unComentario){
+    public void setComentario (String unComentario){
       comentario = unComentario;
     }
     
@@ -278,33 +278,55 @@ public class Testeo {
      
      for (int i = 0 ; i < 8 ; i++)
      {
-        for (int j = 0 ; j < 10 ; j++)
-         {
-            if ((sentido.equals("S")) && (i > fila) && (i <= fila + pasos) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
-           
-            if ((sentido.equals("N")) && (i < fila) && (i >= fila - pasos) && (columna == j) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)) {} else {valido = false;}}                       
-           
-            if ((sentido.equals("O")) && (j < columna) && (j >= columna - pasos) && (fila == i) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( j == columna - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
-           
-            if ((sentido.equals("E")) && (j > columna) && (j <= columna + pasos) && (fila == i) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( j == columna + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
-           
-            if ((sentido.equals("NO")) && (j < columna) && (i < fila) && (i-j == fila-columna) && (j >= columna - pasos) && (i >= fila - pasos) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( j == columna - pasos && i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+       for (int j = 0; j < 10; j++) {
+                if ((sentido.equals("S")) && (i > fila) && (i <= fila + pasos) && (columna == j) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(i == fila + pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
             
-            if ((sentido.equals("NE")) && (j > columna) && (i < fila) && (i+j == fila+columna) && (j <= columna + pasos) && (i >= fila - pasos) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( j == columna + pasos && i == fila - pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+                if ((sentido.equals("N")) && (i < fila) && (i >= fila - pasos) && (columna == j) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(i == fila - pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
             
-            if ((sentido.equals("SO")) && (j < columna) && (i > fila) && (i+j == fila+columna) && (j >= columna - pasos) && (i <= fila + pasos) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( j == columna - pasos && i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+                if ((sentido.equals("O")) && (j < columna) && (j >= columna - pasos) && (fila == i) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(j == columna - pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
             
-            if ((sentido.equals("SE")) && (j > columna) && (i > fila) && (i-j == fila-columna) && (j <= columna + pasos) && (i <= fila + pasos) && (unTablero.getValorCelda(i,j) != 'V') )
-               {if( j == columna + pasos && i == fila + pasos && unTablero.getValorCelda(i,j) == otroColor.charAt(0)){} else {valido = false;}}                       
+                if ((sentido.equals("E")) && (j > columna) && (j <= columna + pasos) && (fila == i) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(j == columna + pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
             
-         }  
+                if ((sentido.equals("NO")) && (j < columna) && (i < fila) && (i - j == fila - columna) && (j >= columna - pasos) && (i >= fila - pasos) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(j == columna - pasos && i == fila - pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
+            
+                if ((sentido.equals("NE")) && (j > columna) && (i < fila) && (i + j == fila + columna) && (j <= columna + pasos) && (i >= fila - pasos) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(j == columna + pasos && i == fila - pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
+            
+                if ((sentido.equals("SO")) && (j < columna) && (i > fila) && (i + j == fila + columna) && (j >= columna - pasos) && (i <= fila + pasos) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(j == columna - pasos && i == fila + pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
+            
+                if ((sentido.equals("SE")) && (j > columna) && (i > fila) && (i - j == fila - columna) && (j <= columna + pasos) && (i <= fila + pasos) && (unTablero.getValorCelda(i, j) != 'V')) {
+                    if (!(j == columna + pasos && i == fila + pasos && unTablero.getValorCelda(i, j) == otroColor.charAt(0))) {
+                        valido = false;
+                    }
+                }
+}
       }
      
      Tablero tableroFinal = new Tablero(unTablero);
@@ -642,7 +664,7 @@ public class Testeo {
 
     Tablero unTablero = new Tablero(unSistema.getUltimoTablero());
 
-    int cantidadTotal = int cantidadTotal = contarFichas(color, unSistema);
+    int cantidadTotal = contarFichas(color, unSistema);
 
     if (cantidadTotal > 0) {
         boolean[][] visitadas = new boolean[8][10];
