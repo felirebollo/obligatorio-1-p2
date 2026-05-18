@@ -225,6 +225,7 @@ public static void registrarTesteo (Sistema unSistema){
        System.out.println("");
       System.out.println("Ingrese el numero del tester:" + "\n");
       int numeroTester = in.nextInt() - 1 ;
+       in.nextLine();
 
       //Se valida el numero
       while(numeroTester < 0 || numeroTester >= unSistema.getListaTester().size()) {
