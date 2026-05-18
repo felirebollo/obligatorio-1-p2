@@ -122,6 +122,7 @@ public static void registrarTester (Sistema unSistema){
      
      Tester nuevo = new Tester(nombre, edad, experiencia);
      unSistema.agregarTester(nuevo);
+     System.out.println("Tester agregado existosamente." + "\n");
       
       System.out.println("Desea agregar un nuevo tester: (SI/NO)" + "\n");
       permanecer = in.nextLine();
