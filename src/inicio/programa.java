@@ -1,15 +1,20 @@
+// Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
+
 package inicio;
 import java.util.*;
 import dominio.*;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
-// Autores: Felipe Rebollo Nro: 366552 - Martin Arismendi Nro: 353787
 
 public class programa {
 
-public static void main(String[] args) {
+public static void main(String[] args)throws Exception {
        
    Scanner in = new Scanner (System.in);
 
+    System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
+   
    Sistema unSistema = new Sistema();
    Tablero unTablero = new Tablero();
     
